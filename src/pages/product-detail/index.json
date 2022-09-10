@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "product": "components/product/index",
+    "carousel": "components/carousel/index"
+  }
+}

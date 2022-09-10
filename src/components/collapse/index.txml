@@ -1,0 +1,13 @@
+<view class="container">
+  <view id="wrap-description" class="description {{isCollapsedDesc ? 'collapse' : ''}}">
+    <view id="description">
+      <slot></slot>
+    </view>
+  </view>
+</view>
+<view class="wrap-button-collapse">
+  <button tiki:if="{{showCollapse}}" class="button-collapse" type="ghost" size="small" onTap="onToggleDesc">
+    {{isCollapsedDesc ? 'Rút gọn' : 'Xem thêm'}}
+    <icon type="{{isCollapsedDesc ? 'arrow_up' : 'arrow_down' />
+  </button>
+</view>

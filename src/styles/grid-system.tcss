@@ -1,0 +1,34 @@
+.row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-gap: 16px;
+}
+
+/* spanning cols, complete values missing */
+
+.col-2 {
+  grid-column: auto/span 2;
+}
+
+.col-3 {
+  grid-column: auto/span 3;
+}
+
+.col-6 {
+  grid-column: auto/span 6;
+}
+
+.col-8 {
+  grid-column: auto/span 8;
+}
+
+/* spanning rows , complete values missing*/
+
+.row-2 {
+  grid-row: auto/span 2;
+}
+
+.text-not-found {
+  width: 100%;
+  display: block;
+}

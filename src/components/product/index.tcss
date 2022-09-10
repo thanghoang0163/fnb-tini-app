@@ -1,0 +1,29 @@
+.product {
+  width: 130px;
+  border-radius: 8px;
+}
+
+.product-img {
+  width: 100%;
+  height: 120px;
+}
+
+.product_text-container {
+  padding: 0 10px;
+}
+
+.product_text-container > view {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.product-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.product-price {
+  padding: 10px 0;
+}

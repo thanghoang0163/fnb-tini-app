@@ -1,0 +1,27 @@
+.header-container {
+  margin: 20px 0 20px 0;
+}
+
+.header-img {
+  width: 52px;
+  height: 29px;
+  margin-right: 10px;
+}
+
+.header-container-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-container-text text:first-child {
+  font-size: 10px;
+}
+
+.header-container-text text:last-child {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.carousel_list {
+  background-color: #fff;
+}

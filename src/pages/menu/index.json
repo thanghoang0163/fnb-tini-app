@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "search": "/components/search/index",
+    "chip": "@tiki.vn/tini-ui/es/chip/index",
+    "product-section": "components/product-section/index"
+  }
+}

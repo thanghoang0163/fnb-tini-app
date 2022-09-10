@@ -1,0 +1,36 @@
+<template name="carousel-loading">
+  <carousel class="carousel_list border-bottom" indicator-dots spacing="{{5}}">
+    <slider-item tiki:for="{{2}}" isLoading />
+  </carousel>
+</template>
+
+<template name="carousel-completed">
+  <carousel class="carousel_list border-bottom" indicator-dots indicator-active-color="#00C57E" autoplay
+    spacing="{{5}}">
+    <slider-item tiki:for="{{sliders}}" item="{{item}}" />
+  </carousel>
+</template>
+
+<view class="page">
+  <view class="header-container flex container">
+    <image src="/assets/images/uway-logo.png" class="header-img" />
+    <view class="header-container-text">
+      <text>Mừng đến với..</text>
+      <text>Fnb Template - Mini App</text>
+    </view>
+  </view>
+
+  <search />
+
+  <template is="carousel-{{isLoadingCarousel ? 'loading' : 'completed'}}" data="{{sliders}}" />
+
+  <view class="vertical container border-bottom">
+    <text class="text-title">Sản phẩm nổi bật</text>
+    <product-section type="vertical" isLoading="{{isLoading}}" products="{{products}}" />
+  </view>
+
+  <view class="horizontal container">
+    <text class="text-title">Ưu đãi vào món mới</text>
+    <product-section type="horizontal" isLoading="{{isLoading}}" products="{{newProducts}}" />
+  </view>
+</view>

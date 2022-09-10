@@ -1,0 +1,6 @@
+.carousel_item {
+  border-radius: 8px;
+  overflow: hidden;
+  height: 40vw;
+  background-color: rgba(0, 0, 0, 0.1);
+}

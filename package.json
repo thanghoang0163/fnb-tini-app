@@ -1,0 +1,15 @@
+{
+  "name": "fnb-mobile-app",
+  "version": "0.1.0",
+  "tiki": {
+    "appIdentifier": "com.merchantu01",
+    "buildNumber": 3
+  },
+  "dependencies": {
+    "@tiki.vn/mini-html-parser2": "^0.0.4",
+    "@tiki.vn/tini-ui": "^0.16.0",
+    "html-entities": "^2.3.3",
+    "lodash": "^4.17.21",
+    "query-string": "^7.1.1"
+  }
+}

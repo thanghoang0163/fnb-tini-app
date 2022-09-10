@@ -1,0 +1,15 @@
+<template name="slider_item-loading">
+  <carousel-item tiki:for="{{3}}">
+    <view class="skeleton w-full carousel_item" />
+  </carousel-item>
+</template>
+
+<template name="slider_item-completed">
+  <carousel-item>
+    <view class="carousel_item">
+      <image class="w-full h-full" src="{{item.image}}" />
+    </view>
+  </carousel-item>
+</template>
+
+<template is="slider_item-{{isLoading ? 'loading' : 'completed'}}" data="{{item}}" />

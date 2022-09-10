@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/menu/index",
+    "pages/order/index",
+    "pages/account/index",
+    "pages/product-detail/index"
+  ],
+  "window": {
+    "defaultTitle": "",
+    "transparentTitle": "auto",
+    "backgroundColor": "#fff"
+  },
+  "tabBar": {
+    "textColor": "#fff",
+    "selectedColor": "#00C57E",
+    "backgroundColor": "#1E2731",
+    "items": [
+      {
+        "name": "Trang chủ",
+        "pagePath": "pages/home/index",
+        "icon": "assets/icons/tab-home.svg",
+        "activeIcon": "assets/icons/tab-home-active.svg"
+      },
+      {
+        "name": "Thực đơn",
+        "pagePath": "pages/menu/index",
+        "icon": "assets/icons/tab-menu.svg",
+        "activeIcon": "assets/icons/tab-menu-active.svg"
+      },
+      {
+        "name": "Đơn hàng",
+        "pagePath": "pages/order/index",
+        "icon": "assets/icons/tab-order.svg",
+        "activeIcon": "assets/icons/tab-order-active.svg"
+      },
+      {
+        "name": "Tài khoản",
+        "pagePath": "pages/account/index",
+        "icon": "assets/icons/tab-account.svg",
+        "activeIcon": "assets/icons/tab-account-active.svg"
+      }
+    ]
+  }
+}

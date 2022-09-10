@@ -1,0 +1,25 @@
+<view class="product-section">
+  <template name="vertical">
+    <view class="product-section-vertical">
+      <block tiki:if="{{!isLoading}}">
+        <product isLoading tiki:for="{{skeletons}}" tiki:key="*this" />
+      </block>
+      <block tiki:else tiki:for="{{products}}" tiki:key="{{product.id}}">
+        <product product="{{item}}" className="box-shadow" />
+      </block>
+    </view>
+  </template>
+
+  <template name="horizontal">
+    <view class="product-section-horizontal hide-scroll-bar">
+      <block tiki:if="{{!isLoading}}">
+        <product isLoading tiki:for="{{skeletons}}" tiki:key="*this" />
+      </block>
+      <block tiki:else tiki:for="{{products}}" tiki:key="{{product.id}}">
+        <product product="{{item}}" className="box-shadow" />
+      </block>
+    </view>
+  </template>
+
+  <template is="{{type}}" data="{{isLoading, skeletons, products}}" />
+</view>

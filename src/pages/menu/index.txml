@@ -1,0 +1,30 @@
+<view class="page">
+  <text class="menu-title container" number-of-lines="{{1}}">Thực đơn</text>
+  <search />
+
+  <view class="category container border-bottom">
+    <view class="category-all">All</view>
+    <view class="category-beverage">
+      <image src="/assets/icons/beverage.svg" />
+      <text>Đồ uống</text>
+    </view>
+    <view class="category-food">
+      <image src="/assets/icons/food.svg" />
+      <text>Đồ ăn</text>
+    </view>
+    <view class="category-cake">
+      <image src="/assets/icons/cake.svg" />
+      <text>Bánh ngọt</text>
+    </view>
+  </view>
+
+  <view class="horizontal container border-bottom">
+    <text class="text-title">Sản phẩm nổi bật</text>
+    <product-section type="horizontal" isLoading="{{isLoading}}" products="{{featuredProducts}}" />
+  </view>
+
+  <view class="all-products container">
+    <text class="text-title">Tất cả sản phẩm</text>
+    <product-section type="vertical" isLoading="{{isLoading}}" products="{{products}}" />
+  </view>
+</view>

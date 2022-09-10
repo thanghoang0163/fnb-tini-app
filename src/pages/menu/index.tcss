@@ -1,0 +1,83 @@
+.menu-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 30px 0 18px;
+}
+
+.category {
+  display: flex;
+  overflow-x: auto;
+  margin-top: 5px;
+}
+
+.category::-webkit-scrollbar {
+  display: none;
+}
+
+.category view {
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.category view image {
+  width: 20px;
+  height: 90%;
+  margin-right: 3px;
+}
+
+.category-all,
+.category view text {
+  font-size: 12px;
+  color: rgba(50, 50, 50, 0.8);
+  white-space: nowrap;
+}
+
+.category-beverage,
+.category-food,
+.category-cake {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f2f4;
+}
+
+.category-all {
+  background-color: #00c57e;
+}
+
+/* All Products */
+.all-products .product-section .product-section-vertical {
+  display: flex;
+  flex-direction: column;
+}
+
+.all-products .product-section .product-section-vertical .product {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.all-products .product-section .product-section-vertical .product > view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 12px;
+  height: 120px;
+}
+
+.all-products .product-section .product-section-vertical .product image {
+  width: 30vw;
+  height: 20vh;
+}
+
+.all-products
+  .product-section
+  .product-section-vertical
+  .product
+  .product_text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}

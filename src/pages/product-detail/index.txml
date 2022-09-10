@@ -1,0 +1,80 @@
+<import-sjs from="../../utils/common.sjs" name="{numberFormatter}"></import-sjs>
+
+<view class="page">
+  <view class="">
+    <carousel size="large" isLoading="{{isLoading}}" list="{{product.images}}" />
+    <view class="icon-container">
+      <!-- <view class="back-btn" catchTap="goBack">
+        <image src="/assets/icons/arrow-left.svg" />
+      </view> -->
+      <view class="favorite-btn" catchTap="addToFavoriteList">
+        <image src="{{isClicked ? '/assets/icons/heart-active-white.svg' : '/assets/icons/heart.svg'}}" />
+      </view>
+    </view>
+  </view>
+
+  <view class="product-detail-container container">
+    <text class="product-detail_name">{{product.name}}</text>
+    <view class="product-detail_price">
+      <text class="">{{numberFormatter(product.price, ' đ')}}</text>
+      <view class="product-detail_quantity">
+        <button class="small-btn quantity_icon" catchTap="onTapAdd">
+          <icon type="plus" color="#fff" size="16" />
+        </button>
+        <text>{{quantity}}</text>
+        <button class="small-btn quantity_icon" catchTap="onTapSubtract">
+          <icon type="minus" color="#fff" size="16" />
+        </button>
+      </view>
+    </view>
+  </view>
+
+  <view class="product-detail_size border-bottom container">
+    <view class="size-s">
+      <text>S</text>
+      <view>+{{numberFormatter(sizeSPrice, ' đ')}}</view>
+    </view>
+    <view class="size-m">
+      <text>M</text>
+      <view>+{{numberFormatter(sizeMPrice, ' đ')}}</view>
+    </view>
+    <view class="size-l">
+      <text>L</text>
+      <view>+{{numberFormatter(sizeLPrice, ' đ')}}</view>
+    </view>
+  </view>
+
+  <view class="product-detail_topping border-bottom container">
+    <text class="text-title">Thêm Topping</text>
+    <view class="product-detail_topping-child">
+      <view class="topping-container" tiki:for="{{3}}">
+        <text>Trân châu đường đen</text>
+        <view class="product-detail_price">
+          <text>{{numberFormatter(toppingPrice, ' đ')}}</text>
+          <view class="product-detail_quantity">
+            <button class="small-btn quantity_icon" catchTap="onTapAdd">
+              <icon type="plus" color="#fff" size="15" />
+            </button>
+            <text>{{quantityTopping}}</text>
+            <button class="small-btn quantity_icon" catchTap="onTapSubtract">
+              <icon type="minus" color="#fff" size="15" />
+            </button>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="product-detail_note container border-bottom">
+    <textarea placeholder="Ghi chú cho quán..."></textarea>
+  </view>
+
+  <view class="product-detail_payment container">
+    <view class="cart">
+      <image src="/assets/icons/cart.svg" />
+    </view>
+    <view class="payment">
+      <text>Thanh toán - {{numberFormatter(totalPrice, ' đ')}}</text>
+    </view>
+  </view>
+</view>

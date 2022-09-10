@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "search": "/components/search/index",
+    "slider-item": "components/slider-item/index",
+    "product-section": "components/product-section/index"
+  }
+}

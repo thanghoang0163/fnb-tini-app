@@ -1,0 +1,19 @@
+<import-sjs from="./index.sjs" name="carouselSJS"></import-sjs>
+
+<template name="carousel-loading">
+  <view class="skeleton w-full carousel-item {{carouselSJS.getSizeCarousel(size)}}" />
+</template>
+<template name="carousel-completed">
+  <carousel class="carousel" onChange="onChange">
+    <carousel-item tiki:for="{{list}}" tiki:key="{{item.id}}">
+      <image class="w-full carousel-item {{carouselSJS.getSizeCarousel(size)}}" mode="aspectFill" src="{{item.src}}" />
+    </carousel-item>
+  </carousel>
+  <view tiki:if="{{list.length > 1}}" class="indicator-number">
+    {{(current+1)}}/{{list.length}}
+  </view>
+</template>
+
+<view class="wrap-carousel">
+  <template is="carousel-{{isLoading ? 'loading' : 'completed'}}" data="{{list, current, size}}" />
+</view>
