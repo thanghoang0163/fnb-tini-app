@@ -14,7 +14,7 @@ Page({
       price: 0,
     },
     quantity: 1,
-    quantityTopping: 1,
+    quantityTopping: 0,
     totalPrice: 0,
     toppingPrice: 10000,
     sizeSPrice: 0,
@@ -22,24 +22,45 @@ Page({
     sizeLPrice: 10000,
   },
 
-  onTapAdd() {
+  onTapAddQuantity() {
     const add = this.data.quantity + 1;
+    const totalPrice = +this.data.totalPrice + this.data.product.price 
     this.setData({
       quantity: add,
+      totalPrice 
     });
   },
 
-  onTapSubtract() {
+  onTapSubtractQuantity() {
     const subtract = this.data.quantity - 1;
     if (subtract < 1) return;
+    const totalPrice = +this.data.totalPrice - +this.data.product.price 
     this.setData({
       quantity: subtract,
+      totalPrice
     });
   },
 
-  // goBack() {
-  //   my.navigateBack();
-  // },
+  // Add Topping Button
+  onTapAddToppingQuantity() {
+    const add = this.data.quantityTopping + 1;
+    const totalPrice = +this.data.totalPrice + +this.data.toppingPrice 
+    this.setData({
+      quantityTopping: add,
+      totalPrice
+    });
+  },
+
+  onTapSubtractToppingQuantity() {
+    const subtract = this.data.quantityTopping - 1;
+    if (subtract < 0) return;
+    const totalPrice = +this.data.totalPrice - this.data.toppingPrice 
+    this.setData({
+      quantityTopping: subtract,
+      totalPrice
+    });
+  },
+  
 
   addToFavoriteList() {
     this.setData({
@@ -50,11 +71,11 @@ Page({
   async onLoad(query) {
     const { id } = parseQuery(query);
     const product = await productApis.getProductDetail(id);
-    console.log(product.images);
+    // console.log(product.images);
 
     this.setData({
       product,
-      totalPrice: 250000,
+      totalPrice: product.price,
     });
   },
 });

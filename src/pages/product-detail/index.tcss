@@ -1,3 +1,10 @@
+.carousel-product-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+}
+
 .icon-container {
   display: flex;
   justify-content: space-between;
@@ -20,6 +27,17 @@
 .icon-container image {
   width: 70%;
   height: 70%;
+  
+}
+
+.product-detail_main-content {
+  width: 100vw;
+  position: absolute;
+  top: 50vh;
+  left: 0;
+  background-color: #fff;
+  border-radius: 20px 20px 0px 0px;
+  box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .product-detail_name {
