@@ -1,7 +1,6 @@
 App({
   onLaunch(options) {
-    console.log('App onLaunch');
+    console.log(options);
   },
-  onShow(options) {
-  },
+  onShow(options) {},
 });

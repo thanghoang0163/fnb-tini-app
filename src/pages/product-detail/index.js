@@ -51,6 +51,8 @@ Page({
       },
     ],
     selectedSize: {},
+    isSelected: false,
+    oldSizePrice: 0,
   },
 
   onTapAddQuantity() {
@@ -74,18 +76,28 @@ Page({
 
   // Add Price Size Button
   _onSelectOption(size) {
-    const totalPrice = +this.data.totalPrice + +size.price;
+    let totalPrice = +this.data.totalPrice;
+
+    console.log(size.price);
+    if (this.data.oldSizePrice != size.price) {
+      totalPrice -= this.data.oldSizePrice;
+      this.setData({
+        oldSizePrice: size.price,
+      });
+      totalPrice += +size.price;
+      console.log("qbc");
+    }
 
     this.setData({
       selectedSize: size,
       totalPrice,
     });
-    // console.log(id);
+    // console.log(oldPrice);
   },
 
   // Add Topping Button
   onTapAddToppingQuantity() {
-    const add = this.data.quantityTopping + 1;
+    const add = +this.data.quantityTopping + 1;
     const totalPrice = +this.data.totalPrice + +this.data.toppings.price;
     this.setData({
       quantityTopping: add,
@@ -94,9 +106,9 @@ Page({
   },
 
   onTapSubtractToppingQuantity() {
-    const subtract = this.data.quantityTopping - 1;
+    const subtract = +this.data.quantityTopping - 1;
     if (subtract < 0) return;
-    const totalPrice = +this.data.totalPrice - this.data.toppingPrice;
+    const totalPrice = +this.data.totalPrice - +this.data.toppingPrice;
     this.setData({
       quantityTopping: subtract,
       totalPrice,
