@@ -27,7 +27,6 @@
 .icon-container image {
   width: 70%;
   height: 70%;
-  
 }
 
 .product-detail_main-content {
@@ -38,11 +37,14 @@
   background-color: #fff;
   border-radius: 20px 20px 0px 0px;
   box-shadow: 0px -4px 10px rgba(0, 0, 0, 0.1);
+  padding-top: 20px;
 }
 
 .product-detail_name {
-  font-size: 18px;
+  display: inline-block;
+  font-size: 16px;
   font-weight: 700;
+  width: 100%;
 }
 
 .product-detail_price {
@@ -72,30 +74,34 @@
   margin-top: 20px;
 }
 
-.product-detail_size > view {
-  width: 80px;
+.size {
+  width: 27vw;
   height: 50px;
   border-radius: 8px;
   background-color: #f2f2f4;
   overflow: hidden;
 }
 
+.border-active {
+  border: 1px solid #0e8253;
+}
+
+.border-deactive {
+  border: none;
+}
+
 .product-detail_size text {
   font-weight: 600;
 }
 
-.size-s view,
-.size-m view,
-.size-l view {
+.size view {
   background-color: rgba(30, 39, 49, 0.7);
   color: #fff;
   font-size: 12px;
   text-align: center;
 }
 
-.size-s text,
-.size-m text,
-.size-l text {
+.size text {
   display: inline-block;
   width: 100%;
   text-align: center;

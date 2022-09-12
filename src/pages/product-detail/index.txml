@@ -23,53 +23,48 @@
             <icon type="plus" color="#fff" size="16" />
           </button>
           <text>{{quantity < 10 ? '0' + quantity : quantity}}</text>
-          <button class="small-btn quantity_icon" catchTap="onTapSubtractQuantity">
-            <icon type="minus" color="#fff" size="16" />
-          </button>
+              <button class="small-btn quantity_icon" catchTap="onTapSubtractQuantity">
+                <icon type="minus" color="#fff" size="16" />
+              </button>
         </view>
       </view>
     </view>
-  
+
     <view class="product-detail_size border-bottom container">
-      <view class="size-s">
-        <text>S</text>
-        <view>+{{numberFormatter(sizeSPrice, ' đ')}}</view>
-      </view>
-      <view class="size-m">
-        <text>M</text>
-        <view>+{{numberFormatter(sizeMPrice, ' đ')}}</view>
-      </view>
-      <view class="size-l">
-        <text>L</text>
-        <view>+{{numberFormatter(sizeLPrice, ' đ')}}</view>
-      </view>
+      <block tiki:for="{{sizes}}" tiki:key="{{item.id}}">
+        <select-option className="{{selectedSize.id === item.id ? 'border-active' : 'border-deactive'}}"
+          name="{{item.name}}" price="{{numberFormatter(item.price, ' đ')}}" option="{{item}}"
+          onTap="_onSelectOption" />
+      </block>
     </view>
-  
+
     <view class="product-detail_topping border-bottom container">
       <text class="text-title">Thêm Topping</text>
       <view class="product-detail_topping-child">
-        <view class="topping-container" tiki:for="{{3}}">
-          <text>Trân châu đường đen</text>
-          <view class="product-detail_price">
-            <text>{{numberFormatter(toppingPrice, ' đ')}}</text>
-            <view class="product-detail_quantity">
-              <button class="small-btn quantity_icon" catchTap="onTapAddToppingQuantity">
-                <icon type="plus" color="#fff" size="15" />
-              </button>
-              <text>{{quantityTopping < 10 ? '0' + quantityTopping : quantityTopping}}</text>
-              <button class="small-btn quantity_icon" catchTap="onTapSubtractToppingQuantity">
-                <icon type="minus" color="#fff" size="15" />
-              </button>
+        <block tiki:for="{{toppings}}" tiki:key="{{item.id}}">
+          <view class="topping-container">
+            <text>{{item.name}}</text>
+            <view class="product-detail_price">
+              <text>{{numberFormatter(item.price, ' đ')}}</text>
+              <view class="product-detail_quantity">
+                <button class="small-btn quantity_icon" catchTap="onTapAddToppingQuantity">
+                  <icon type="plus" color="#fff" size="15" />
+                </button>
+                <text>{{quantityTopping < 10 ? '0' + quantityTopping : quantityTopping}}</text>
+                    <button class="small-btn quantity_icon" catchTap="onTapSubtractToppingQuantity">
+                      <icon type="minus" color="#fff" size="15" />
+                    </button>
+              </view>
             </view>
           </view>
-        </view>
+        </block>
       </view>
     </view>
-  
+
     <view class="product-detail_note container border-bottom">
       <textarea placeholder="Ghi chú cho quán..."></textarea>
     </view>
-  
+
     <view class="product-detail_payment container">
       <view class="cart">
         <image src="/assets/icons/cart.svg" />

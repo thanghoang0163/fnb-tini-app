@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "product": "components/product/index",
-    "carousel": "components/carousel/index"
+    "carousel": "components/carousel/index",
+    "select-option": "components/select-option/index"
   }
 }

@@ -1,0 +1,6 @@
+<view tiki:if="{{isLoading}}" class="skeleton" />
+
+<view tiki:else class="size {{className}}" onTap="_onTap">
+  <text>{{name}}</text>
+  <view>+{{price}}</view>
+</view>

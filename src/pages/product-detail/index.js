@@ -16,51 +16,92 @@ Page({
     quantity: 1,
     quantityTopping: 0,
     totalPrice: 0,
-    toppingPrice: 10000,
-    sizeSPrice: 0,
-    sizeMPrice: 4000,
-    sizeLPrice: 10000,
+    sizes: [
+      {
+        id: 1,
+        name: "S",
+        price: 0,
+      },
+      {
+        id: 2,
+        name: "M",
+        price: 4000,
+      },
+      {
+        id: 3,
+        name: "L",
+        price: 10000,
+      },
+    ],
+    toppings: [
+      {
+        id: 1,
+        name: "Trân châu đường đen",
+        price: 10000,
+      },
+      {
+        id: 2,
+        name: "Thạch trái cây",
+        price: 20000,
+      },
+      {
+        id: 3,
+        name: "Thêm đường",
+        price: 30000,
+      },
+    ],
+    selectedSize: {},
   },
 
   onTapAddQuantity() {
     const add = this.data.quantity + 1;
-    const totalPrice = +this.data.totalPrice + this.data.product.price 
+    const totalPrice = +this.data.totalPrice + +this.data.product.price;
     this.setData({
       quantity: add,
-      totalPrice 
+      totalPrice,
     });
   },
 
   onTapSubtractQuantity() {
     const subtract = this.data.quantity - 1;
     if (subtract < 1) return;
-    const totalPrice = +this.data.totalPrice - +this.data.product.price 
+    const totalPrice = +this.data.totalPrice - +this.data.product.price;
     this.setData({
       quantity: subtract,
-      totalPrice
+      totalPrice,
     });
+  },
+
+  // Add Price Size Button
+  _onSelectOption(size) {
+    const totalPrice = +this.data.totalPrice + +size.price;
+
+    this.setData({
+      selectedSize: size,
+      totalPrice,
+    });
+    // console.log(id);
   },
 
   // Add Topping Button
   onTapAddToppingQuantity() {
     const add = this.data.quantityTopping + 1;
-    const totalPrice = +this.data.totalPrice + +this.data.toppingPrice 
+    const totalPrice = +this.data.totalPrice + +this.data.toppings.price;
     this.setData({
       quantityTopping: add,
-      totalPrice
+      totalPrice,
     });
   },
 
   onTapSubtractToppingQuantity() {
     const subtract = this.data.quantityTopping - 1;
     if (subtract < 0) return;
-    const totalPrice = +this.data.totalPrice - this.data.toppingPrice 
+    const totalPrice = +this.data.totalPrice - this.data.toppingPrice;
     this.setData({
       quantityTopping: subtract,
-      totalPrice
+      totalPrice,
     });
   },
-  
 
   addToFavoriteList() {
     this.setData({
@@ -71,7 +112,6 @@ Page({
   async onLoad(query) {
     const { id } = parseQuery(query);
     const product = await productApis.getProductDetail(id);
-    // console.log(product.images);
 
     this.setData({
       product,

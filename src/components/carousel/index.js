@@ -7,6 +7,7 @@ Component({
   data: {
     current: 0,
   },
+
   methods: {
     onChange(e) {
       this.setData({
