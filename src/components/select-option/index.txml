@@ -1,6 +1,32 @@
-<view tiki:if="{{isLoading}}" class="skeleton" />
+<template name="size-select-option">
+  <view tiki:if="{{isLoading}}" class="skeleton" />
 
-<view tiki:else class="size {{className}}" onTap="_onTap">
-  <text>{{name}}</text>
-  <view>+{{price}}</view>
-</view>
+  <view tiki:else class="size {{className}}" onTap="_onTap">
+    <text>{{name}}</text>
+    <view>+{{price}}</view>
+  </view>
+</template>
+
+<template name="topping-select-option">
+  <view tiki:if="{{isLoading}}" class="skeleton" />
+
+  <view tiki:else class="topping-container {{className}}">
+    <text>{{name}}</text>
+    <view class="product-detail_price">
+      <text>{{price}}</text>
+      <view class="product-detail_quantity">
+        <button class="small-btn quantity_icon" catchTap="onTapAdd">
+          <icon type="plus" color="#fff" size="15" />
+        </button>
+        <text>{{quantity < 10 ? '0' + quantity : quantity}}</text>
+            <button class="small-btn quantity_icon" catchTap="onTapSubtract">
+              <icon type="minus" color="#fff" size="15" />
+            </button>
+      </view>
+    </view>
+  </view>
+</template>
+
+<block>
+  <template is="{{type}}-select-option" data="{{name, price, className, isLoading, quantity}}" />
+</block>

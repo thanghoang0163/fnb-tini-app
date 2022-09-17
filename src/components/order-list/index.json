@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "order-item": "components/order-item/index",
+    "modal": "components/modal/index"
+  }
+}

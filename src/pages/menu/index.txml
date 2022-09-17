@@ -1,5 +1,5 @@
 <view class="page">
-  <text class="menu-title container" number-of-lines="{{1}}">Thực đơn</text>
+  <!-- <text class="menu-title container" number-of-lines="{{1}}">Thực đơn</text> -->
   <search />
 
   <view class="category container border-bottom">

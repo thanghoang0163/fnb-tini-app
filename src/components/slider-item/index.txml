@@ -7,7 +7,7 @@
 <template name="slider_item-completed">
   <carousel-item>
     <view class="carousel_item">
-      <image class="w-full h-full" src="{{item.image}}" />
+      <image class="w-full h-full" src="{{item.feature_image}}" />
     </view>
   </carousel-item>
 </template>

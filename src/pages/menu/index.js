@@ -11,7 +11,7 @@ Page({
     if (!data) return [];
     return data.map((product) => ({
       id: product.id,
-      image: product.feature_image,
+      feature_image: product.feature_image,
       price: product.price,
       name: product.name,
     }));
@@ -23,19 +23,21 @@ Page({
     });
 
     try {
-      const featuredProducts = await productApis.getFeaturedProducts(12572);
-      const res = await productApis.getProductsArchives();
-      // console.log(res)
+      const featuredProducts = await productApis
+        .getFeaturedProducts(12572)
+        .finally(() => this.setData({ isLoading: false }));
+      const res = await productApis
+        .getProductsArchives()
+        .finally(() => this.setData({ isLoading: false }));
 
       if (res) {
         this.setData({
           featuredProducts: this.mappingProductsData(featuredProducts),
-          products: this.mappingProductsData(res)
+          products: this.mappingProductsData(res),
         });
       }
-    }
-    catch(error) {
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
   },
 

@@ -13,7 +13,7 @@ Page({
     if (!data) return [];
     return data.map((slider) => ({
       id: slider.ID,
-      image: slider.feature_image,
+      feature_image: slider.feature_image,
     }));
   },
 
@@ -21,7 +21,7 @@ Page({
     if (!data) return [];
     return data.map((product) => ({
       id: product.id,
-      image: product.feature_image,
+      feature_image: product.feature_image,
       price: product.price,
       name: product.name,
     }));
@@ -42,8 +42,12 @@ Page({
         });
       }
 
-      const resProduct = await productApis.getProductsArchives();
-      const featuredProduct = await productApis.getFeaturedProducts(12572);
+      const resProduct = await productApis
+        .getProductsArchives()
+        .finally(() => this.setData({ isLoading: false }));
+      const featuredProduct = await productApis
+        .getFeaturedProducts(12572)
+        .finally(() => this.setData({ isLoading: false }));
       if (resProduct) {
         this.setData({
           products: this.mappingProductsData(resProduct).slice(0, 4),
@@ -57,5 +61,7 @@ Page({
   async onReady() {
     this.setData({ isLoadingCarousel: true });
     this.loadData();
+
+    my.hideBackHome({ hide: true });
   },
 });

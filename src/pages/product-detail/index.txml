@@ -4,7 +4,7 @@
   <view class="carousel-product-img">
     <carousel size="large" isLoading="{{isLoading}}" list="{{product.images}}" />
     <view class="icon-container">
-      <!-- <view class="back-btn" catchTap="goBack">
+      <!-- <view class="back-btn" catchTap="onTapToGoBack">
         <image src="/assets/icons/arrow-left.svg" />
       </view> -->
       <view class="favorite-btn" catchTap="addToFavoriteList">
@@ -32,9 +32,9 @@
 
     <view class="product-detail_size border-bottom container">
       <block tiki:for="{{sizes}}" tiki:key="{{item.id}}">
-        <select-option className="{{selectedSize.id === item.id ? 'border-active' : 'border-deactive'}}"
-          name="{{item.name}}" price="{{numberFormatter(item.price, ' đ')}}" option="{{item}}"
-          onTap="_onSelectOption" />
+        <select-option className="{{selectedSize.id === item.id ? 'border-active' : 'border-deactive'}}" type="size"
+          name="{{item.name}}" price="{{numberFormatter(item.price, ' đ')}}" option="{{item}}" isLoading="{{isLoading}}"
+          onTap="_onSelectOptionSize" />
       </block>
     </view>
 
@@ -42,21 +42,10 @@
       <text class="text-title">Thêm Topping</text>
       <view class="product-detail_topping-child">
         <block tiki:for="{{toppings}}" tiki:key="{{item.id}}">
-          <view class="topping-container">
-            <text>{{item.name}}</text>
-            <view class="product-detail_price">
-              <text>{{numberFormatter(item.price, ' đ')}}</text>
-              <view class="product-detail_quantity">
-                <button class="small-btn quantity_icon" catchTap="onTapAddToppingQuantity">
-                  <icon type="plus" color="#fff" size="15" />
-                </button>
-                <text>{{quantityTopping < 10 ? '0' + quantityTopping : quantityTopping}}</text>
-                    <button class="small-btn quantity_icon" catchTap="onTapSubtractToppingQuantity">
-                      <icon type="minus" color="#fff" size="15" />
-                    </button>
-              </view>
-            </view>
-          </view>
+          <select-option className="{{selectedTopping.id === item.id ? 'border-active' : 'border-deactive'}}"
+            name="{{item.name}}" price="{{numberFormatter(item.price, ' đ')}}" option="{{item}}" type="topping"
+            quantity="{{item.quantity}}" isLoading="{{isLoading}}" onTapAdd="onTapAddToppingQuantity"
+            onTapSubtract="onTapSubtractToppingQuantity" />
         </block>
       </view>
     </view>
@@ -66,10 +55,10 @@
     </view>
 
     <view class="product-detail_payment container">
-      <view class="cart">
+      <view class="cart" onTap="addToCart">
         <image src="/assets/icons/cart.svg" />
       </view>
-      <view class="payment">
+      <view class="payment" onTap="addAndGoToCart">
         <text>Thanh toán - {{numberFormatter(totalPrice, ' đ')}}</text>
       </view>
     </view>

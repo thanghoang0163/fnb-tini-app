@@ -1,0 +1,25 @@
+.modal-desc {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.modal-footer-btn {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.modal-btn {
+  font-size: 14px;
+  border-radius: 8px;
+  border: solid 1px #00c57e;
+  width: 38%;
+}
+
+.modal-left-btn {
+  color: #00c57e;
+}
+
+.modal-right-btn {
+  background-color: #00c57e;
+}

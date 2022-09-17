@@ -1,0 +1,63 @@
+<import-sjs from="../../utils/common.sjs" name="{numberFormatter}"></import-sjs>
+
+<template name='loading'>
+  <view class="flex flex-col justify-between items-center py-2x-small">
+    <block tiki:for="{{skeletons}}" tiki:key="*this">
+      <order-item isLoading className="mb-2x-small" />
+      <view class="divider" />
+    </block>
+    <view class="w-full mt-2x-small">
+      <block tiki:for="{{[1, 2, 3]}}">
+        <view class="flex justify-between items-center mb-medium">
+          <view class="skeleton skeleton-font-medium skeleton-40-width" />
+          <view class="skeleton skeleton-font-medium skeleton-40-width" />
+        </view>
+      </block>
+    </view>
+  </view>
+</template>
+
+<template name='completed'>
+  <view class="order-list">
+    <block tiki:for="{{products}}" tiki:key="id">
+      <order-item product="{{item}}" onTapProduct="_onTapProduct" onClickRemoveOrder="confirmRemoveOrder"
+        onChangeQuantityOrder="_onChangeQuantityOrder" onClickEditOrder="onClickEditOrder" />
+    </block>
+    <view class="divider" />
+    <view class="order-list-price">
+      <view>
+        <text>Giá</text>
+        <text>
+          {{numberFormatter(price, ' đ')}}
+        </text>
+      </view>
+      <view>
+        <view>
+          <text>Vận chuyển</text>
+          <image class="order-list-info-icon" src="/assets/icons/info.svg" />
+        </view>
+        <text>
+          {{price > 0 ? numberFormatter(shippingFee, ' đ') : numberFormatter(0)}}
+        </text>
+      </view>
+      <view tiki:if="{{price > 0 && coupon.discount}}">
+        <text>Voucher</text>
+        <text class="order-list-promotion-text ">
+          {{`-${numberFormatter(coupon.discount, ' đ')}`}}
+        </text>
+      </view>
+      <view>
+        <text>Tổng cộng</text>
+        <text>
+          {{numberFormatter(total, ' đ')}}
+        </text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<template is="{{isLoading ? 'loading' : 'completed'}}" data="{{products, price, total, shippingFee, coupon}}" />
+
+<modal isShow="{{modal.isShow}}" headers="{{modal.headers}}" descriptions="{{modal.descriptions}}"
+  leftButton="{{modal.leftButton}}" rightButton="{{modal.rightButton}}" onClickLeftButton="hideModal"
+  onClickRightButton="_onRemoveProduct" onHide="hideModal" />

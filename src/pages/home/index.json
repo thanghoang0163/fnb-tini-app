@@ -1,4 +1,5 @@
 {
+  "transparentTitle": "auto",
   "usingComponents": {
     "search": "/components/search/index",
     "slider-item": "components/slider-item/index",

@@ -1,0 +1,7 @@
+<view class="order">
+  <view class="order-category">
+    <block tiki:for="{{categories}}" tiki:key="id">
+      <view class="order-category-{{item.name}}">{{item.name}}</view>
+    </block>
+  </view>
+</view>

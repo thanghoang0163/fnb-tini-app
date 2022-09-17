@@ -4,7 +4,7 @@ Component({
     isLoading: false,
     item: {
       id: "",
-      image: "",
+      feature_image: "",
       name: "",
       desc: "",
     },

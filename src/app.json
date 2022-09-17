@@ -4,11 +4,11 @@
     "pages/menu/index",
     "pages/order/index",
     "pages/account/index",
-    "pages/product-detail/index"
+    "pages/product-detail/index",
+    "pages/cart/index"
   ],
   "window": {
     "defaultTitle": "",
-    "transparentTitle": "auto",
     "backgroundColor": "#fff"
   },
   "tabBar": {

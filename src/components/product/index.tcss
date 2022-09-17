@@ -1,11 +1,5 @@
 .product {
-  width: 130px;
   border-radius: 8px;
-}
-
-.product-img {
-  width: 100%;
-  height: 120px;
 }
 
 .product_text-container {
@@ -16,10 +10,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
 }
 
-.product-name {
+.product-name text {
   font-size: 14px;
   font-weight: 600;
 }

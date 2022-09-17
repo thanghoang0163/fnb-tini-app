@@ -1,5 +1,7 @@
 import { navigate } from "../../utils/navigate";
 
+const app = getApp();
+
 Component({
   props: {
     isLoading: false,
@@ -7,9 +9,18 @@ Component({
       id: "",
       name: "",
       price: "",
-      image: "",
+      feature_image: "",
     },
     className: "",
+  },
+  data: {
+    selectedProduct: {
+      id: "",
+      images: [],
+      name: "",
+      price: 0,
+      quantity: 1,
+    },
   },
   methods: {
     _onTapProduct() {
@@ -20,6 +31,20 @@ Component({
           id,
         },
       });
+    },
+
+    addToCart() {
+      this.setData({
+        "selectedProduct.id": this.props.product.id,
+        "selectedProduct.images": [{ src: this.props.product.feature_image }],
+        "selectedProduct.name": this.props.product.name,
+        "selectedProduct.price": this.props.product.price,
+      });
+      app.addProduct(
+        this.data.selectedProduct,
+        this.data.selectedProduct.quantity
+      );
+      // console.log(this.data.selectedProduct);
     },
   },
 });

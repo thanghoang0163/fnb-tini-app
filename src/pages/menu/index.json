@@ -1,4 +1,5 @@
 {
+  "defaultTitle": "Thực đơn",
   "usingComponents": {
     "search": "/components/search/index",
     "chip": "@tiki.vn/tini-ui/es/chip/index",

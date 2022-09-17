@@ -3,7 +3,7 @@
     <icon type="search" class="search-icon" color="#323232" size="26" />
   </view>
   <input type="text" placeholder="Tìm kiếm..." class="search-input" maxlength="100" value="{{value}}"
-    onInput="getTextValue" />
+    onInput="getTextValue" focus="{{isFocus}}" />
   <view class="search-go-to" catchTap="navigateToMenu">
     <icon type="direction_right" class="search-go-to-icon" color="#fff" size="12" />
   </view>

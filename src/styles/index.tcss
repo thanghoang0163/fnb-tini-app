@@ -148,3 +148,7 @@ text {
   background-color: #00c57e;
   border: none;
 }
+
+/* button:hover {
+  background-color: #00c57e;
+} */

@@ -7,17 +7,19 @@
     <view class="skeleton skeleton-font-medium skeleton-100-width" />
   </view>
 
-  <view tiki:else>
+  <view tiki:else class="product-content">
     <view class="product_img-container" onTap="_onTapProduct">
-      <image src="{{product.image}}" class="product-img" />
+      <image src="{{product.feature_image}}" class="product-img" />
     </view>
     <view class="product_text-container">
-      <text class="product-name" number-of-lines="{{2}}">{{product.name}}</text>
+      <view class="product-name" onTap="_onTapProduct">
+        <text number-of-lines="{{2}}">{{product.name}}</text>
+      </view>
       <view>
-        <text class="product-price" number-of-lines="{{1}}">{{numberFormatter(product.price, ' đ')}}</text>
-        <button class="small-btn">
+        <view class="product-price" onTap="_onTapProduct">{{numberFormatter(product.price, ' đ')}}</view>
+        <!-- <button class="small-btn" onTap="addToCart">
           <icon type="plus" color="#fff" size="15" />
-        </button>
+        </button> -->
       </view>
     </view>
   </view>

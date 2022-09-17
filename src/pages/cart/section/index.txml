@@ -1,0 +1,10 @@
+<block>
+  <view class="section{{className}}">
+    <view class="section-title text-title">
+      {{title}}
+    </view>
+    <view class="section-content">
+      <slot />
+    </view>
+  </view>
+</block>

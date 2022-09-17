@@ -1,0 +1,23 @@
+.order-list-info-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.order-list-promotion-text {
+  color: #00ab56;
+}
+
+.order-list-price > view {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: 10px;
+}
+
+.order-list-price > view text:last-child {
+  font-weight: 600;
+}
+
+.order-list-info-icon {
+  margin-left: 5px;
+}

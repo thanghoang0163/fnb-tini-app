@@ -1,7 +1,7 @@
 <view class="product-section">
   <template name="vertical">
     <view class="product-section-vertical">
-      <block tiki:if="{{!isLoading}}">
+      <block tiki:if="{{isLoading}}">
         <product isLoading tiki:for="{{skeletons}}" tiki:key="*this" />
       </block>
       <block tiki:else tiki:for="{{products}}" tiki:key="{{product.id}}">
@@ -12,7 +12,7 @@
 
   <template name="horizontal">
     <view class="product-section-horizontal hide-scroll-bar">
-      <block tiki:if="{{!isLoading}}">
+      <block tiki:if="{{isLoading}}">
         <product isLoading tiki:for="{{skeletons}}" tiki:key="*this" />
       </block>
       <block tiki:else tiki:for="{{products}}" tiki:key="{{product.id}}">

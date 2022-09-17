@@ -1,9 +1,11 @@
 Component({
   props: {
-    value: "",
     className: "",
   },
-
+  data: {
+    value: "",
+    isFocus: false,
+  },
   methods: {
     getTextValue(e) {
       this.setData({
@@ -13,11 +15,11 @@ Component({
     onTapIcon() {
       this.setData({
         value: "",
+        isFocus: true,
       });
     },
     navigateToMenu() {
       my.switchTab({ url: "pages/menu/index" });
-      console.log(1);
     },
   },
 });

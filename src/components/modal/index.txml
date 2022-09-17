@@ -1,0 +1,14 @@
+<modal class="modal" show="{{isShow}}" mask="{{true}}" zIndex="{{10}}" onModalClose="_onHide">
+  <view slot="header">
+    <view tiki:for="{{headers}}" tiki:key="*this" class="modal-header">{{item}}</view>
+    <view tiki:for="{{descriptions}}" tiki:key="*this" class="modal-desc">{{item}}</view>
+  </view>
+  <view slot="footer">
+    <view class="modal-footer-btn">
+      <button shape="pill" tiki:if="{{leftButton}}" class="modal-left-btn modal-btn" size="large"
+        onTap="_onClickLeftButton" type="outline">{{leftButton}}</button>
+      <button shape="pill" tiki:if="{{rightButton}}" class="modal-right-btn modal-btn" size="large"
+        onTap="_onClickRightButton">{{rightButton}}</button>
+    </view>
+  </view>
+</modal>

@@ -1,5 +1,5 @@
 .header-container {
-  margin: 20px 0 20px 0;
+  margin: 7vh 0 0;
 }
 
 .header-img {

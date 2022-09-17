@@ -1,8 +1,7 @@
 import { productApis } from "../../services/apis";
-import parse from "@tiki.vn/mini-html-parser2";
 import { parseQuery } from "../../utils/navigate";
-import { navigate } from "../../utils/navigate";
-import { decode } from "html-entities";
+
+const app = getApp();
 
 Page({
   data: {
@@ -14,7 +13,6 @@ Page({
       price: 0,
     },
     quantity: 1,
-    quantityTopping: 0,
     totalPrice: 0,
     sizes: [
       {
@@ -38,21 +36,23 @@ Page({
         id: 1,
         name: "Trân châu đường đen",
         price: 10000,
+        quantity: 0,
       },
       {
         id: 2,
         name: "Thạch trái cây",
         price: 20000,
+        quantity: 0,
       },
       {
         id: 3,
         name: "Thêm đường",
         price: 30000,
+        quantity: 0,
       },
     ],
-    selectedSize: {},
-    isSelected: false,
     oldSizePrice: 0,
+    toppingId: 0,
   },
 
   onTapAddQuantity() {
@@ -75,50 +75,81 @@ Page({
   },
 
   // Add Price Size Button
-  _onSelectOption(size) {
-    let totalPrice = +this.data.totalPrice;
+  _onSelectOptionSize(size) {
+    let totalPrice = this.data.totalPrice;
 
-    console.log(size.price);
-    if (this.data.oldSizePrice != size.price) {
+    if (this.data.oldSizePrice !== size.price) {
       totalPrice -= this.data.oldSizePrice;
       this.setData({
         oldSizePrice: size.price,
       });
-      totalPrice += +size.price;
-      console.log("qbc");
+      totalPrice += size.price;
     }
 
     this.setData({
       selectedSize: size,
       totalPrice,
     });
-    // console.log(oldPrice);
   },
 
   // Add Topping Button
-  onTapAddToppingQuantity() {
-    const add = +this.data.quantityTopping + 1;
-    const totalPrice = +this.data.totalPrice + +this.data.toppings.price;
+  onTapAddToppingQuantity(topping) {
+    let totalPrice = +this.data.totalPrice + topping.price;
+
+    this.data.toppings[topping.id - 1] = {
+      ...this.data.toppings[topping.id - 1],
+      quantity: topping.quantity + 1,
+    };
     this.setData({
-      quantityTopping: add,
+      selectedTopping: topping,
+      toppings: this.data.toppings,
       totalPrice,
     });
   },
 
-  onTapSubtractToppingQuantity() {
-    const subtract = +this.data.quantityTopping - 1;
-    if (subtract < 0) return;
-    const totalPrice = +this.data.totalPrice - +this.data.toppingPrice;
+  onTapSubtractToppingQuantity(topping) {
+    let totalPrice = +this.data.totalPrice - topping.price;
+
+    let quantity = topping.quantity - 1;
+
+    if (quantity < 0) return;
+
+    this.data.toppings[topping.id - 1] = {
+      ...this.data.toppings[topping.id - 1],
+      quantity,
+    };
     this.setData({
-      quantityTopping: subtract,
+      selectedTopping: topping,
+      toppings: this.data.toppings,
       totalPrice,
     });
   },
+
+  // onTapToGoBack() {
+  //   my.navigateBack();
+  // },
 
   addToFavoriteList() {
-    this.setData({
-      isClicked: true,
-    });
+    if (!this.data.isClicked) {
+      this.setData({
+        isClicked: true,
+      });
+    } else {
+      this.setData({
+        isClicked: false,
+      });
+    }
+  },
+
+  // Cart Button
+  addToCart() {
+    app.addProduct(this.data.product, this.data.quantity);
+    my.navigateTo({ url: "pages/cart/index" });
+  },
+
+  addAndGoToCart() {
+    app.addProduct(this.data.product, this.data.quantity);
+    my.navigateTo({ url: "pages/cart/index" });
   },
 
   async onLoad(query) {
@@ -129,5 +160,7 @@ Page({
       product,
       totalPrice: product.price,
     });
+
+    // my.hideBackHome({ hide: true });
   },
 });
