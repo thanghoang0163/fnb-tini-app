@@ -1,0 +1,44 @@
+<import-sjs from="../../utils/common.sjs" name="{statusFormatter, numberFormatter}"></import-sjs>
+
+<template name="loading">
+  <view class="bg-white radius-8px p-medium">
+    <view class="skeleton skeleton-font-medium skeleton-25-width radius-16px"></view>
+    <view class="mt-small px-medium">
+      <view class="flex items-center py-2x-small border-bottom-gray">
+        <view class="size-40 skeleton"></view>
+        <view class="ml-2x-small skeleton-75-width">
+          <view class="mb-4x-small skeleton skeleton-font-regular skeleton-50-width"></view>
+          <view class="skeleton skeleton-font-regular skeleton-50-width"></view>
+        </view>
+      </view>
+    </view>
+    <view class="skeleton w-full skeleton-font-regular"></view>
+  </view>
+</template>
+
+<template name="completed">
+  <view class="">
+    <text class="status-{{order.status}}">{{statusFormatter(order.status)}}</text>
+
+    <view class="">
+      <view>
+        <image src="{{order.product.thumbnail}}" />
+        <view>
+          <view>{{order.product.name}}</view>
+          <view>
+            {{order.product.total}} sản phẩm | {{numberFormatter(order.product.price, ' đ')}}
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view>
+      <view>Phương thức thanh toán</view>
+      <view>{{order.method}}</view>
+    </view>
+  </view>
+</template>
+
+<view onTap="_onTap">
+  <template is="{{isLoading ? 'loading' : 'completed'}}" data="{{order}}" />
+</view>

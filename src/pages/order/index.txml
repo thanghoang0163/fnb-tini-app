@@ -1,7 +1,19 @@
 <view class="order">
-  <view class="order-category">
-    <block tiki:for="{{categories}}" tiki:key="id">
-      <view class="order-category-{{item.name}}">{{item.name}}</view>
+  <tabs class="order-tabs" tabs="{{orderTabs}}" tabsName="activeTab" activeTab="{{activeTab}}" onTabClick="onTabClick"
+    onChange="onChangeTab" stickyBar="{{true}}" swipeable="{{true}}">
+    <block tiki:for="{{orderTabs}}">
+      <tab-content tabId="{{index}}">
+        <view tiki:if="{{isLoading}}" class="">
+          <view tiki:for="{{orderTabs}}" tiki:key="id" class="mb-medium">
+            <card-order isLoading="{{true}}" />
+          </view>
+        </view>
+        <view tiki:else class="">
+          <view tiki:for="{{orders}}" tiki:for-item="order" tiki:key="id" class="mb-medium">
+            <card-order onTap="onMoveOrderDetail" order="{{order}}" />
+          </view>
+        </view>
+      </tab-content>
     </block>
-  </view>
+  </tabs>
 </view>

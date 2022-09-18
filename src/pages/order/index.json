@@ -1,3 +1,9 @@
 {
-  "defaultTitle": "Giỏ hàng"
+  "defaultTitle": "Giỏ hàng",
+  "usingComponents": {
+    "category": "components/category/index",
+    "card-order": "components/card-order/index",
+    "tabs": "@tiki.vn/tini-ui/es/tabs/index",
+    "tab-content": "@tiki.vn/tini-ui/es/tabs/tab-content/index"
+  }
 }
