@@ -76,3 +76,10 @@
   color: #910f17;
   margin-left: 5px;
 }
+
+/* Option */
+.option-size,
+.option-topping {
+  font-size: 12px;
+  color: rgb(0, 0, 0, 0.5);
+}

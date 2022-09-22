@@ -12,11 +12,11 @@ export const numberFormatter = (number, suffix = "") => {
 export const statusFormatter = (status) => {
   let statusFormatter = status;
   switch (status) {
-    case "delievered":
+    case "delivered":
       statusFormatter = "Đã giao";
       break;
     case "shipping":
-      statusFormatter = "Đang vận chuyển";
+      statusFormatter = "Đang giao";
       break;
     case "processing":
       statusFormatter = "Đang tiến hành";

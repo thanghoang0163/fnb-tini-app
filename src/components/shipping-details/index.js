@@ -10,14 +10,7 @@ Component({
   },
   methods: {
     _onOpenAddress() {
-      my.getAddress({
-        success: (res) => {
-          console.log("address", res);
-        },
-        fail: (e) => {
-          console.log(console.error(e));
-        },
-      });
+      my.navigateTo({ url: "pages/location/index" });
     },
   },
 });

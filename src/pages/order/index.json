@@ -1,5 +1,6 @@
 {
-  "defaultTitle": "Giỏ hàng",
+  "defaultTitle": "Đơn hàng",
+  "titleBarBottomColor": "#fff",
   "usingComponents": {
     "category": "components/category/index",
     "card-order": "components/card-order/index",

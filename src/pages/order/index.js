@@ -4,7 +4,7 @@ import queryString from "query-string";
 Page({
   data: {
     isLoading: false,
-    activeTab: 1,
+    activeTab: 0,
     orderTabs: [
       {
         id: 1,
@@ -20,10 +20,11 @@ Page({
       },
       {
         id: 4,
-        title: "Đang vận chuyển",
+        title: "Đang giao",
       },
     ],
     orders: [],
+    selectedOrder: {},
   },
 
   onTabClick({ index, tabsName }) {
@@ -64,13 +65,7 @@ Page({
   },
 
   // Life cycle
-  onLoad(query) {
-    const { tab } = queryString.parse(query);
-    this.setData({
-      activeTab: parseInt(tab) + 1,
-    });
-    console.log(query);
-  },
+  onLoad(query) {},
 
   onReady() {
     this.loadData();

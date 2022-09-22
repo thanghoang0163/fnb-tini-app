@@ -11,6 +11,7 @@ Component({
       },
       method: "",
     },
+    selectedCard: {},
     onTap: () => {},
   },
 

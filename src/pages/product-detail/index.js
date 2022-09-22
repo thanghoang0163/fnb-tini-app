@@ -11,6 +11,8 @@ Page({
       images: [],
       name: "",
       price: 0,
+      size: {},
+      topping: {},
     },
     quantity: 1,
     totalPrice: 0,
@@ -53,21 +55,23 @@ Page({
     ],
     oldSizePrice: 0,
     toppingId: 0,
+    productId: 0,
   },
 
   onTapAddQuantity() {
     const add = this.data.quantity + 1;
-    const totalPrice = +this.data.totalPrice + +this.data.product.price;
+    const totalPrice = +this.data.product.price * add;
     this.setData({
       quantity: add,
       totalPrice,
     });
   },
 
+  // Product
   onTapSubtractQuantity() {
     const subtract = this.data.quantity - 1;
     if (subtract < 1) return;
-    const totalPrice = +this.data.totalPrice - +this.data.product.price;
+    const totalPrice = +this.data.product.price * subtract;
     this.setData({
       quantity: subtract,
       totalPrice,
@@ -88,8 +92,11 @@ Page({
 
     this.setData({
       selectedSize: size,
+      "product.size": size,
       totalPrice,
     });
+
+    console.log(this.data.product.size);
   },
 
   // Add Topping Button
@@ -100,16 +107,19 @@ Page({
       ...this.data.toppings[topping.id - 1],
       quantity: topping.quantity + 1,
     };
+
     this.setData({
       selectedTopping: topping,
       toppings: this.data.toppings,
+      "product.topping": topping,
       totalPrice,
     });
+
+    console.log(this.data.product.topping);
   },
 
   onTapSubtractToppingQuantity(topping) {
     let totalPrice = +this.data.totalPrice - topping.price;
-
     let quantity = topping.quantity - 1;
 
     if (quantity < 0) return;
@@ -121,34 +131,37 @@ Page({
     this.setData({
       selectedTopping: topping,
       toppings: this.data.toppings,
+      "product.topping": topping,
       totalPrice,
     });
   },
-
-  // onTapToGoBack() {
-  //   my.navigateBack();
-  // },
 
   addToFavoriteList() {
     if (!this.data.isClicked) {
       this.setData({
         isClicked: true,
       });
+      app.addFavoritedProduct(this.data.product);
     } else {
       this.setData({
         isClicked: false,
       });
+      app.removeFavoritedProduct(this.data.product);
     }
   },
 
   // Cart Button
   addToCart() {
     app.addProduct(this.data.product, this.data.quantity);
+    app.addSize(this.data.product.size);
+    app.addTopping(this.data.product.topping);
     my.navigateTo({ url: "pages/cart/index" });
   },
 
   addAndGoToCart() {
     app.addProduct(this.data.product, this.data.quantity);
+    app.addSize(this.data.product.size);
+    app.addTopping(this.data.product.topping);
     my.navigateTo({ url: "pages/cart/index" });
   },
 
@@ -159,8 +172,7 @@ Page({
     this.setData({
       product,
       totalPrice: product.price,
+      productId: id,
     });
-
-    // my.hideBackHome({ hide: true });
   },
 });

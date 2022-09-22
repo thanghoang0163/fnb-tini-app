@@ -149,6 +149,10 @@ text {
   border: none;
 }
 
-/* button:hover {
-  background-color: #00c57e;
-} */
+/* divider */
+.divider {
+  height: 1px;
+  width: 100%;
+  margin: 10px 0;
+  background-color: #ebebf0;
+}

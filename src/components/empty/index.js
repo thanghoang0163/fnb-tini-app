@@ -5,11 +5,10 @@ Component({
     buttonText: "",
     className: "",
     showBottomDivider: false,
-    onTapButton: () => {},
   },
   methods: {
-    _onTapButton() {
-      this.props.onTapButton();
+    onTapContinue() {
+      my.navigateTo({ url: "pages/home/index" });
     },
   },
 });

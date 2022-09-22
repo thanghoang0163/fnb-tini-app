@@ -1,1 +1,8 @@
-{}
+{
+  
+  "defaultTitle": "Tài khoản",
+  "usingComponents": {
+    "coupon-n-point": "/components/coupon-n-point/index",
+    "my-orders": "/components/my-orders/index"
+  }
+}

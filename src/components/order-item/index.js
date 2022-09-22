@@ -7,6 +7,8 @@ Component({
       name: "",
       price: 0,
       quantity: 1,
+      size: {},
+      topping: {},
     },
     onClickRemoveOrder: () => {},
     onClickEditOrder: () => {},

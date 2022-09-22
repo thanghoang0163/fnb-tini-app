@@ -1,24 +1,69 @@
+.status {
+  padding: 8px 15px;
+  border-radius: 16px;
+}
+
 .status-delivered {
-  background: var(--green20);
-  color: var(--green80);
+  background: #d7fae0;
+  color: #007d3a;
 }
 
 .status-shipping {
-  background: var(--blue20);
-  color: var(--blue80);
+  background: #dbeeff;
+  color: #0d5bb5;
 }
 
 .status-processing {
-  background: var(--yellow20);
-  color: var(--yellow80);
+  background: #fff5c7;
+  color: #cc8100;
 }
 
 .status-waiting {
-  background: var(--red20);
-  color: var(--red80);
+  background: #ffdbde;
+  color: #bf1d28;
 }
 
 .status-canceled {
-  background: var(--gray10);
-  color: var(--gray50);
+  background: #f5f5fa;
+  color: #a6a6b0;
+}
+
+.card-order {
+  margin: 20px;
+  padding: 16px 10px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.card-order-detail {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+  padding-bottom: 10px;
+  border-bottom: solid 1px #ebebf0;
+}
+
+.card-order-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.card-order-name {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.card-order-price {
+  color: #808089;
+}
+
+.card-order-payment {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-order-payment-method {
+  font-weight: 600;
 }

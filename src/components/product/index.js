@@ -13,15 +13,7 @@ Component({
     },
     className: "",
   },
-  data: {
-    selectedProduct: {
-      id: "",
-      images: [],
-      name: "",
-      price: 0,
-      quantity: 1,
-    },
-  },
+
   methods: {
     _onTapProduct() {
       const { id } = this.props.product;
@@ -31,20 +23,6 @@ Component({
           id,
         },
       });
-    },
-
-    addToCart() {
-      this.setData({
-        "selectedProduct.id": this.props.product.id,
-        "selectedProduct.images": [{ src: this.props.product.feature_image }],
-        "selectedProduct.name": this.props.product.name,
-        "selectedProduct.price": this.props.product.price,
-      });
-      app.addProduct(
-        this.data.selectedProduct,
-        this.data.selectedProduct.quantity
-      );
-      // console.log(this.data.selectedProduct);
     },
   },
 });

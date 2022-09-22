@@ -1,7 +1,10 @@
 {
   "defaultTitle": "Thực đơn",
+  "titleBarBottomColor": "#fff",
   "usingComponents": {
-    "search": "/components/search/index",
+    "search-input": "/components/search-input/index",
+    "sort": "/components/sort/index",
+    "empty": "/components/empty/index",
     "chip": "@tiki.vn/tini-ui/es/chip/index",
     "product-section": "components/product-section/index"
   }

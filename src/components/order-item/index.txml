@@ -13,7 +13,7 @@
     <view class="order-item-btn">
       <view class="order-item-edit-btn" onTap="_onClickEditOrder">
         <icon size="20" type="edit" color="#00C57E" />
-        <text class="order-item-edit-text">Chỉnh sửa đơn hàng</text>
+        <text class="order-item-edit-text">Chỉnh sửa</text>
       </view>
       <view class="order-item-close-btn" onTap="_onClickRemoveOrder">
         <icon size="20" type="close_circle" color="#910F17" />
@@ -36,6 +36,10 @@
           <view class="order-item-content-price">
             <text>{{numberFormatter(product.price, ' đ')}}</text>
             <text>x {{product.quantity}}</text>
+          </view>
+          <view class="order-item-options">
+            <view class="option-size">Size: {{product.size.name}}</view>
+            <view class="option-topping">{{product.topping.name}}</view>
           </view>
         </view>
       </view>

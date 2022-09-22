@@ -1,14 +1,15 @@
 <view class="order">
-  <tabs class="order-tabs" tabs="{{orderTabs}}" tabsName="activeTab" activeTab="{{activeTab}}" onTabClick="onTabClick"
-    onChange="onChangeTab" stickyBar="{{true}}" swipeable="{{true}}">
+  <tabs class="order-tab" tabs="{{orderTabs}}" tabsName="activeTab" activeTab="{{activeTab}}" onTabClick="onTabClick"
+    onChange="onChangeTab" stickyBar="{{true}}" swipeable="{{true}}" tabBarActiveTextColor="#00C57E"
+    tabBarUnderlineColor="#00C57E">
     <block tiki:for="{{orderTabs}}">
       <tab-content tabId="{{index}}">
-        <view tiki:if="{{isLoading}}" class="">
-          <view tiki:for="{{orderTabs}}" tiki:key="id" class="mb-medium">
-            <card-order isLoading="{{true}}" />
+        <view tiki:if="{{isLoading}}">
+          <view tiki:for="{{orderTabs}}" tiki:key="id">
+            <card-order isLoading="{{true}}" selectedCard="{{item}}" />
           </view>
         </view>
-        <view tiki:else class="">
+        <view tiki:else>
           <view tiki:for="{{orders}}" tiki:for-item="order" tiki:key="id" class="mb-medium">
             <card-order onTap="onMoveOrderDetail" order="{{order}}" />
           </view>

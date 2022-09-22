@@ -15,10 +15,9 @@
 
 <template name="completed">
   <view class="shipping-detail">
-    <view class="shipping-detail-img-container">
-      <image class="shipping-detail-img" src="{{avatar}}" />
-    </view>
+    <image class="shipping-detail-img" src="{{avatar}}" />
     <view class="shipping-detail-address">
+      <view class="shipping-detail-address_title">{{title}}</view>
       <view class="shipping-detail-address_label">{{label}}</view>
       <view class="shipping-detail-address_desc">{{description}}</view>
     </view>
@@ -28,6 +27,10 @@
   </view>
 </template>
 
-<template is="{{isLoading ? 'loading' : 'completed'}}"
-  data="{{avatar: buyer.avatar, label: buyer.address, description: `${buyer.name} • ${buyer.phone}`, showButton: true, _onOpenAddress}}" />
-<view class="divider" />
+<view>
+  <template is="{{isLoading ? 'loading' : 'completed'}}"
+    data="{{title:'Địa chỉ giao hàng', avatar: buyer.avatar, label: buyer.address, description: `${buyer.name} • ${buyer.phone}`, showButton: true, _onOpenAddress}}" />
+  <view class="divider" />
+  <template is="{{isLoading ? 'loading' : 'completed'}}"
+    data="{{title:'Dịch vụ giao hàng', avatar: seller.avatar, label: seller.name, description: seller.description, showButton: false}}" />
+</view>

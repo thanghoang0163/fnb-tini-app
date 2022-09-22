@@ -1,20 +1,18 @@
 <view class="page">
-  <!-- <text class="menu-title container" number-of-lines="{{1}}">Thực đơn</text> -->
-  <search />
+  <view class="actions">
+    <search-input onDebounce="onSearch" className="search_input" placeholder="Tìm kiếm..." onFocus="onFocus"
+      onBlur="onBlur" />
+    <sort sorts="{{sorts}}" isShowSort="{{isShowSort}}" selectedSort="{{selectedSort}}" onSelect="onSelectSort" />
+  </view>
 
   <view class="category container border-bottom">
-    <view class="category-all">All</view>
-    <view class="category-beverage">
-      <image src="/assets/icons/beverage.svg" />
-      <text>Đồ uống</text>
-    </view>
-    <view class="category-food">
-      <image src="/assets/icons/food.svg" />
-      <text>Đồ ăn</text>
-    </view>
-    <view class="category-cake">
-      <image src="/assets/icons/cake.svg" />
-      <text>Bánh ngọt</text>
+    <view class="category-all {{subCateName === 'all' ? 'category-active' : 'category-deactive'}}" data-name="all"
+      style="{{subCateName === 'all' ? 'color: #fff' : 'color: rgba(50, 50, 50, 0.8)'}}" onTap="onSetAllCate">All</view>
+    <view tiki:for="{{categories}}"
+      class="category-{{item.name}} {{subCateName === item.name ? 'category-active' : 'category-deactive'}}"
+      data-name="{{item.name}}" onTap="onTap">
+      <image src="{{item.image}}" />
+      <text style="{{subCateName === item.name ? 'color: #fff' : 'color: rgba(50, 50, 50, 0.8)'}}">{{item.text}}</text>
     </view>
   </view>
 

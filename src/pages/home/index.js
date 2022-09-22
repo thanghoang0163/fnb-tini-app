@@ -1,12 +1,21 @@
 import { homeApis, productApis } from "../../services/apis";
+import { defaultSorts } from "../../utils/constants";
 
 Page({
+  maxSearch: 5,
+
   data: {
     isLoading: false,
     isLoadingCarousel: false,
+    isShowSort: false,
     sliders: [],
     products: [],
     newProducts: [],
+    sorts: defaultSorts,
+    selectedSort: {
+      label: "",
+      value: "",
+    },
   },
 
   mappingSlidersData(data) {
@@ -25,6 +34,12 @@ Page({
       price: product.price,
       name: product.name,
     }));
+  },
+
+  onFocus() {
+    this.setData({
+      isShowSort: true,
+    });
   },
 
   async loadData() {
@@ -54,8 +69,70 @@ Page({
           newProducts: this.mappingProductsData(featuredProduct),
         });
       }
-      // console.log(featuredProduct);
     } catch (error) {}
+  },
+
+  async onSearch(textSearch) {
+    this.setData({
+      isLoading: true,
+      isShowSort: true,
+    });
+    const { products, selectedSort } = this.data;
+    if (textSearch) {
+      let orderby = selectedSort.value;
+      let order = "desc";
+      if (selectedSort.value.includes("price")) {
+        order = selectedSort.value.split("/")[1];
+        orderby = "price";
+      }
+      const data = await productApis.getProductsArchives({
+        order,
+        orderby,
+        search: textSearch,
+        page: 1,
+      });
+      this.setData({
+        products: {
+          ...products,
+          data,
+          page: 1,
+        },
+      });
+    } else {
+      this.setData({
+        products: {
+          ...products,
+          data: products.defaultData,
+        },
+        isLoading: false,
+      });
+    }
+  },
+
+  async onSelectSort(selectSort) {
+    const sortValue = selectSort.value;
+    let orderby = sortValue;
+    let order = "desc";
+    if (sortValue.includes("price")) {
+      order = sortValue.split("/")[1];
+      orderby = "price";
+    }
+    const { textSearch, products } = this.data;
+    const data = await productApis.getProductsArchives({
+      search: textSearch,
+      order,
+      orderby,
+      page: 1,
+    });
+    this.setData({
+      products: {
+        ...products,
+        data,
+        page: 1,
+      },
+      isLoading: false,
+      selectSort,
+    });
   },
 
   async onReady() {

@@ -17,24 +17,22 @@
 </template>
 
 <template name="completed">
-  <view class="">
-    <text class="status-{{order.status}}">{{statusFormatter(order.status)}}</text>
+  <view class="card-order">
+    <text class="status-{{order.status}} status">{{statusFormatter(order.status)}}</text>
 
-    <view class="">
-      <view>
-        <image src="{{order.product.thumbnail}}" />
-        <view>
-          <view>{{order.product.name}}</view>
-          <view>
-            {{order.product.total}} sản phẩm | {{numberFormatter(order.product.price, ' đ')}}
-          </view>
+    <view class="card-order-detail">
+      <image class="card-order-img" src="{{order.product.thumbnail}}" />
+      <view class="card-order-text">
+        <view class="card-order-name">{{order.product.name}}</view>
+        <view class="card-order-price">
+          {{order.product.total}} sản phẩm | {{numberFormatter(order.product.price, ' đ')}}
         </view>
       </view>
     </view>
 
-    <view>
+    <view class="card-order-payment">
       <view>Phương thức thanh toán</view>
-      <view>{{order.method}}</view>
+      <view class="card-order-payment-method">{{order.method}}</view>
     </view>
   </view>
 </template>

@@ -1,15 +1,3 @@
-.order-category {
-  display: flex;
-  justify-content: space-around;
-  margin: 10px 0;
-}
-
-.category-active {
-  color: #00c57e;
-  border-bottom: solid 1px #00c57e;
-}
-
-.category-deactive {
-  color: #808089;
-  border: none;
+.tu-tabs-pane-wrap {
+  background-color: #f6f8f7;
 }

@@ -3,7 +3,7 @@
   <view class="empty-text">
     <text class="empty-text-title">{{title}}</text>
     <text>{{description}}</text>
-    <view tiki:if="{{buttonText}}" class="empty-continue-btn" onTap="_onTapButton">{{buttonText}}</view>
+    <view tiki:if="{{buttonText}}" class="empty-continue-btn" onTap="onTapContinue">{{buttonText}}</view>
   </view>
   <view tiki:if="{{showBottomDivider}}" class="empty-bottom-divider" />
 </view>

@@ -1,7 +1,9 @@
 {
   "transparentTitle": "auto",
   "usingComponents": {
-    "search": "/components/search/index",
+    "search-input": "/components/search-input/index",
+    "sort": "/components/sort/index",
+    "empty": "/components/empty/index",
     "slider-item": "components/slider-item/index",
     "product-section": "components/product-section/index"
   }

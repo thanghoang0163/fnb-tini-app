@@ -9,7 +9,7 @@
 
   <view tiki:else class="product-content">
     <view class="product_img-container" onTap="_onTapProduct">
-      <image src="{{product.feature_image}}" class="product-img" />
+      <image src="{{product.feature_image ? product.feature_image : product.images[0].src}}" class="product-img" />
     </view>
     <view class="product_text-container">
       <view class="product-name" onTap="_onTapProduct">
@@ -17,11 +17,7 @@
       </view>
       <view>
         <view class="product-price" onTap="_onTapProduct">{{numberFormatter(product.price, ' đ')}}</view>
-        <!-- <button class="small-btn" onTap="addToCart">
-          <icon type="plus" color="#fff" size="15" />
-        </button> -->
       </view>
     </view>
   </view>
-
 </view>

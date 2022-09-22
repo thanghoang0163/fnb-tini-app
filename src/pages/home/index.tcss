@@ -25,3 +25,11 @@
 .carousel_list {
   background-color: #fff;
 }
+
+.search_input {
+  margin-bottom: 10px;
+}
+
+.actions {
+  margin: 20px 10px;
+}

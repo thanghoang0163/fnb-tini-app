@@ -3,9 +3,15 @@
     "pages/home/index",
     "pages/menu/index",
     "pages/order/index",
+    "pages/order-detail/index",
     "pages/account/index",
     "pages/product-detail/index",
-    "pages/cart/index"
+    "pages/cart/index",
+    "pages/my-coupon/index",
+    "pages/my-point/index",
+    "pages/tracking-detail/index",
+    "pages/favorite-product/index",
+    "pages/location/index"
   ],
   "window": {
     "defaultTitle": "",

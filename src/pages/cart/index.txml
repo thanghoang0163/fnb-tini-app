@@ -2,8 +2,7 @@
 
 <view class="cart page {{cart.orderedProducts.length ? 'cart-footer-padding' : ''}}">
   <view tiki:if="{{!isLoading && cart.orderedProducts.length === 0}}">
-    <empty class="cart-empty" title="Giỏ hàng trống" description="Khám phá thêm sản phẩm" buttonText="Continue"
-      onTapButton="onTapContinue" />
+    <empty class="cart-empty" title="Giỏ hàng trống" description="Khám phá thêm sản phẩm" buttonText="Tiếp tục" />
     <section fullWidth title="Sản phẩm phổ biến">
       <product-section isLoading="{{isLoading}}" type="vertical" skeletons="{{4}}" products="{{popularProducts}}" />
     </section>

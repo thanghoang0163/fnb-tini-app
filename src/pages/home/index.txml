@@ -20,17 +20,30 @@
     </view>
   </view>
 
-  <search />
+  <view class="actions">
+    <search-input onDebounce="onSearch" className="search_input" placeholder="Tìm kiếm..." onFocus="onFocus"
+      onBlur="onBlur" />
+    <sort sorts="{{sorts}}" isShowSort="{{isShowSort}}" selectedSort="{{selectedSort}}" onSelect="onSelectSort" />
+  </view>
 
   <template is="carousel-{{isLoadingCarousel ? 'loading' : 'completed'}}" data="{{sliders}}" />
 
-  <view class="vertical container border-bottom">
-    <text class="text-title">Sản phẩm nổi bật</text>
+  <block tiki:if="{{products.data.length > 0}}">
     <product-section type="vertical" isLoading="{{isLoading}}" products="{{products}}" />
-  </view>
+  </block>
 
-  <view class="horizontal container">
-    <text class="text-title">Ưu đãi vào món mới</text>
-    <product-section type="horizontal" isLoading="{{isLoading}}" products="{{newProducts}}" />
-  </view>
+  <block tiki:else>
+    <view class="vertical container border-bottom">
+      <text class="text-title">Sản phẩm nổi bật</text>
+      <product-section type="vertical" isLoading="{{isLoading}}" products="{{products}}" />
+    </view>
+
+    <view class="horizontal container">
+      <text class="text-title">Ưu đãi vào món mới</text>
+      <product-section type="horizontal" isLoading="{{isLoading}}" products="{{newProducts}}" />
+    </view>
+  </block>
+
+  <empty tiki:if="{{!products.length && !isLoading}}" class="cart-empty" title="Không có kết quả"
+    description="Thử với từ khóa khác" buttonText="Tiếp tục" />
 </view>

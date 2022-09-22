@@ -72,10 +72,6 @@ Page({
     my.navigateBack();
   },
 
-  onTapContinue() {
-    my.navigateTo({ url: "pages/home/index" });
-  },
-
   onRemoveProduct(product) {
     app.removeProduct(product);
   },

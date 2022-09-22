@@ -9,6 +9,7 @@ App({
     buyer: {},
     seller: {},
     orderedProducts: [],
+    favoritedProducts: [],
     productId: "",
     shippingFee: 0,
     price: 0,
@@ -51,6 +52,70 @@ App({
     this.calculatePrices();
   },
 
+  changeQuantityProduct(product, quantity) {
+    const position = this.cart.orderedProducts.findIndex(
+      (item) => item.id === product.id
+    );
+    if (position !== -1) {
+      this.cart.orderedProducts[position].quantity = quantity;
+    }
+
+    this.calculatePrices();
+  },
+
+  // Add Favorite Products
+  addFavoritedProduct(product) {
+    const position = this.cart.favoritedProducts.findIndex(
+      (item) => item.id === product.id
+    );
+
+    if (position === -1) {
+      this.cart.favoritedProducts.push({ ...product });
+    }
+  },
+
+  removeFavoritedProduct(product) {
+    const position = this.cart.favoritedProducts.findIndex(
+      (item) => item.id === product.id
+    );
+
+    if (position !== -1) {
+      this.cart.favoritedProducts.splice(position, 1);
+    }
+  },
+
+  // Add Option
+  addSize(size) {
+    const position = this.cart.favoritedProducts.findIndex(
+      (item) => item.id === product.id
+    );
+
+    if (position !== -1) {
+      this.cart.orderedProducts[position] = {
+        ...orderedProducts[position],
+        size,
+      };
+    }
+
+    this.calculatePrices();
+
+    console.log(position);
+  },
+
+  addTopping(topping) {
+    const position = this.cart.favoritedProducts.findIndex(
+      (item) => item.id === product.id
+    );
+
+    if (position !== -1) {
+      this.cart.orderedProducts[position] = {
+        ...orderedProducts[position],
+        topping,
+      };
+    }
+    this.calculatePrices();
+  },
+
   calculatePrices() {
     const { shippingFee, coupon, orderedProducts } = this.cart;
     const price = orderedProducts.reduce((acc, curr) => {
@@ -64,17 +129,6 @@ App({
     };
 
     this.cartEvent.emit(EMITTERS.CART_UPDATE, this.cart);
-  },
-
-  changeQuantityProduct(product, quantity) {
-    const position = this.cart.orderedProducts.findIndex(
-      (item) => item.id === product.id
-    );
-    if (position !== -1) {
-      this.cart.orderedProducts[position].quantity = quantity;
-    }
-
-    this.calculatePrices();
   },
 
   async selectCoupon(code) {
