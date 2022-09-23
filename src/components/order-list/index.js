@@ -47,8 +47,15 @@ Component({
       });
     },
 
-    onClickEditOrder() {
-      my.navigateBack()
+    onClickEditOrder(product) {
+      // my.navigateBack()
+      const { id } = product;
+      navigate({
+        page: "product-detail",
+        params: {
+          id,
+        },
+      });
     },
 
     hideModal() {

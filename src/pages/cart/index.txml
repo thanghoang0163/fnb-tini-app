@@ -39,7 +39,7 @@
         <icon tiki:else type="arrow_right" color="#808089" />
       </view>
       <view class="cart_payment">
-        <text>Thanh toán - {{numberFormatter(cart.price, ' đ')}}</text>
+        <text>Thanh toán - {{numberFormatter(cart.total, ' đ')}}</text>
       </view>
     </view>
   </view>

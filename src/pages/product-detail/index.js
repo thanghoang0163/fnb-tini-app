@@ -6,7 +6,7 @@ const app = getApp();
 Page({
   data: {
     isLoading: false,
-    isClicked: false,
+    isLiked: false,
     product: {
       images: [],
       name: "",
@@ -95,8 +95,6 @@ Page({
       "product.size": size,
       totalPrice,
     });
-
-    console.log(this.data.product.size);
   },
 
   // Add Topping Button
@@ -111,11 +109,9 @@ Page({
     this.setData({
       selectedTopping: topping,
       toppings: this.data.toppings,
-      "product.topping": topping,
+      "product.topping": this.data.toppings[topping.id - 1],
       totalPrice,
     });
-
-    console.log(this.data.product.topping);
   },
 
   onTapSubtractToppingQuantity(topping) {
@@ -131,20 +127,20 @@ Page({
     this.setData({
       selectedTopping: topping,
       toppings: this.data.toppings,
-      "product.topping": topping,
+      "product.topping": this.data.toppings[topping.id - 1],
       totalPrice,
     });
   },
 
   addToFavoriteList() {
-    if (!this.data.isClicked) {
+    if (!this.data.isLiked) {
       this.setData({
-        isClicked: true,
+        isLiked: true,
       });
       app.addFavoritedProduct(this.data.product);
     } else {
       this.setData({
-        isClicked: false,
+        isLiked: false,
       });
       app.removeFavoritedProduct(this.data.product);
     }
@@ -153,15 +149,11 @@ Page({
   // Cart Button
   addToCart() {
     app.addProduct(this.data.product, this.data.quantity);
-    app.addSize(this.data.product.size);
-    app.addTopping(this.data.product.topping);
     my.navigateTo({ url: "pages/cart/index" });
   },
 
   addAndGoToCart() {
     app.addProduct(this.data.product, this.data.quantity);
-    app.addSize(this.data.product.size);
-    app.addTopping(this.data.product.topping);
     my.navigateTo({ url: "pages/cart/index" });
   },
 
@@ -173,6 +165,57 @@ Page({
       product,
       totalPrice: product.price,
       productId: id,
+      "product.size": this.data.sizes[0],
+      "product.topping": { price: 0, quantity: 0 },
+    });
+
+    const position = app.cart.orderedProducts.findIndex(
+      (item) => item.id === product.id
+    );
+
+    if (position !== -1) {
+      const orderedProduct = app.cart.orderedProducts[position];
+      const selectedSize = orderedProduct.size;
+      const quantity = orderedProduct.quantity;
+      const selectedTopping = orderedProduct.topping
+        ? orderedProduct.topping
+        : {};
+      this.data.toppings = this.data.toppings.map((item) => {
+        if (selectedTopping.id === item.id) {
+          item = selectedTopping;
+        }
+        return item;
+      });
+
+      this.setData({
+        product: orderedProduct,
+        selectedSize,
+        selectedTopping,
+        quantity,
+        toppings: this.data.toppings,
+      });
+    }
+
+    const positionFavorite = app.cart.favoritedProducts.findIndex(
+      (item) => item.id === product.id
+    );
+
+    if (positionFavorite !== -1) {
+      if (app.cart.favoritedProducts[positionFavorite].isLiked) {
+        this.setData({
+          isLiked: true,
+        });
+      } else {
+        this.setData({
+          isLiked: false,
+        });
+      }
+    }
+  },
+
+  onReady() {
+    this.setData({
+      selectedSize: this.data.sizes[0],
     });
   },
 });

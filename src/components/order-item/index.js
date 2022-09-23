@@ -25,9 +25,5 @@ Component({
     _onClickEditOrder() {
       this.props.onClickEditOrder(this.props.product);
     },
-
-    _onChangeQuantityOrder(value) {
-      this.props.onChangeQuantityOrder(this.props.product, value);
-    },
   },
 });

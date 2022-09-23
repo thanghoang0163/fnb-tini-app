@@ -40,6 +40,7 @@ App({
       this.cart.orderedProducts[position].quantity = quantity;
     else this.cart.orderedProducts.push({ ...product, quantity });
 
+    console.log(this.cart.orderedProducts);
     this.calculatePrices();
   },
 
@@ -70,8 +71,10 @@ App({
     );
 
     if (position === -1) {
-      this.cart.favoritedProducts.push({ ...product });
+      this.cart.favoritedProducts.push({ ...product, isLiked: true });
     }
+
+    console.log(this.cart.favoritedProducts);
   },
 
   removeFavoritedProduct(product) {
@@ -84,42 +87,16 @@ App({
     }
   },
 
-  // Add Option
-  addSize(size) {
-    const position = this.cart.favoritedProducts.findIndex(
-      (item) => item.id === product.id
-    );
-
-    if (position !== -1) {
-      this.cart.orderedProducts[position] = {
-        ...orderedProducts[position],
-        size,
-      };
-    }
-
-    this.calculatePrices();
-
-    console.log(position);
-  },
-
-  addTopping(topping) {
-    const position = this.cart.favoritedProducts.findIndex(
-      (item) => item.id === product.id
-    );
-
-    if (position !== -1) {
-      this.cart.orderedProducts[position] = {
-        ...orderedProducts[position],
-        topping,
-      };
-    }
-    this.calculatePrices();
-  },
-
   calculatePrices() {
     const { shippingFee, coupon, orderedProducts } = this.cart;
-    const price = orderedProducts.reduce((acc, curr) => {
-      return acc + curr.price * curr.quantity;
+
+    let price = orderedProducts.reduce((acc, curr) => {
+      return (
+        acc +
+        curr.price * curr.quantity +
+        curr.size.price +
+        curr.topping.price * curr.topping.quantity
+      );
     }, 0);
     const total = price > 0 ? price + shippingFee - coupon.discount : 0;
     this.cart = {

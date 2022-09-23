@@ -8,7 +8,7 @@
         <image src="/assets/icons/arrow-left.svg" />
       </view> -->
       <view class="favorite-btn" catchTap="addToFavoriteList">
-        <image src="{{isClicked ? '/assets/icons/heart-active-white.svg' : '/assets/icons/heart.svg'}}" />
+        <image src="{{isLiked ? '/assets/icons/heart-active-white.svg' : '/assets/icons/heart.svg'}}" />
       </view>
     </view>
   </view>
