@@ -21,9 +21,7 @@
   </view>
 
   <view class="actions">
-    <search-input onDebounce="onSearch" className="search_input" placeholder="Tìm kiếm..." onFocus="onFocus"
-      onBlur="onBlur" />
-    <sort sorts="{{sorts}}" isShowSort="{{isShowSort}}" selectedSort="{{selectedSort}}" onSelect="onSelectSort" />
+    <search-input onDebounce="onSearch" className="search_input" placeholder="Tìm kiếm..." onFocus="onFocus" />
   </view>
 
   <template is="carousel-{{isLoadingCarousel ? 'loading' : 'completed'}}" data="{{sliders}}" />
@@ -43,7 +41,4 @@
       <product-section type="horizontal" isLoading="{{isLoading}}" products="{{newProducts}}" />
     </view>
   </block>
-
-  <empty tiki:if="{{!products.length && !isLoading}}" class="cart-empty" title="Không có kết quả"
-    description="Thử với từ khóa khác" buttonText="Tiếp tục" />
 </view>

@@ -39,7 +39,9 @@
           </view>
           <view class="order-item-options">
             <view class="option-size">Size: {{product.size.name}}</view>
-            <view class="option-topping">{{product.topping.name}}</view>
+            <block tiki:for="{{product.topping}}">
+              <view class="option-topping">{{item.name}}</view>
+            </block>
           </view>
         </view>
       </view>

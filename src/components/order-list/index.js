@@ -1,9 +1,6 @@
 import { navigate } from "../../utils/navigate";
 
 Component({
-  isCreated: false,
-  selectedProduct: {},
-
   props: {
     isLoading: false,
     shippingFee: 0,

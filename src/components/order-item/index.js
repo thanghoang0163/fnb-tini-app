@@ -8,7 +8,7 @@ Component({
       price: 0,
       quantity: 1,
       size: {},
-      topping: {},
+      topping: [],
     },
     onClickRemoveOrder: () => {},
     onClickEditOrder: () => {},

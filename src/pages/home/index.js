@@ -11,6 +11,7 @@ Page({
     sliders: [],
     products: [],
     newProducts: [],
+    textSearch: "",
     sorts: defaultSorts,
     selectedSort: {
       label: "",
@@ -73,10 +74,7 @@ Page({
   },
 
   async onSearch(textSearch) {
-    this.setData({
-      isLoading: true,
-      isShowSort: true,
-    });
+    this.setData({ isLoading: true });
     const { products, selectedSort } = this.data;
     if (textSearch) {
       let orderby = selectedSort.value;
@@ -97,6 +95,8 @@ Page({
           data,
           page: 1,
         },
+        isLoading: false,
+        textSearch,
       });
     } else {
       this.setData({
@@ -107,32 +107,6 @@ Page({
         isLoading: false,
       });
     }
-  },
-
-  async onSelectSort(selectSort) {
-    const sortValue = selectSort.value;
-    let orderby = sortValue;
-    let order = "desc";
-    if (sortValue.includes("price")) {
-      order = sortValue.split("/")[1];
-      orderby = "price";
-    }
-    const { textSearch, products } = this.data;
-    const data = await productApis.getProductsArchives({
-      search: textSearch,
-      order,
-      orderby,
-      page: 1,
-    });
-    this.setData({
-      products: {
-        ...products,
-        data,
-        page: 1,
-      },
-      isLoading: false,
-      selectSort,
-    });
   },
 
   async onReady() {

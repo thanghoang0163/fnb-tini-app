@@ -12,7 +12,7 @@ Page({
       name: "",
       price: 0,
       size: {},
-      topping: {},
+      topping: [],
     },
     quantity: 1,
     totalPrice: 0,
@@ -54,8 +54,8 @@ Page({
       },
     ],
     oldSizePrice: 0,
-    toppingId: 0,
     productId: 0,
+    productTopping: [],
   },
 
   onTapAddQuantity() {
@@ -100,16 +100,30 @@ Page({
   // Add Topping Button
   onTapAddToppingQuantity(topping) {
     let totalPrice = +this.data.totalPrice + topping.price;
+    let quantity = topping.quantity + 1;
+
+    this.setData({
+      selectedTopping: topping,
+    });
 
     this.data.toppings[topping.id - 1] = {
       ...this.data.toppings[topping.id - 1],
       quantity: topping.quantity + 1,
     };
 
+    let positon = this.data.productTopping.findIndex(
+      (item) => item.id === topping.id
+    );
+
+    if (positon === -1) {
+      this.data.productTopping.push(this.data.toppings[topping.id - 1]);
+    } else {
+      this.data.productTopping[positon].quantity = quantity;
+    }
+
     this.setData({
-      selectedTopping: topping,
       toppings: this.data.toppings,
-      "product.topping": this.data.toppings[topping.id - 1],
+      "product.topping": this.data.productTopping,
       totalPrice,
     });
   },
@@ -124,10 +138,19 @@ Page({
       ...this.data.toppings[topping.id - 1],
       quantity,
     };
+
+    let positon = this.data.productTopping.findIndex(
+      (item) => item.id === topping.id
+    );
+
+    if (positon !== -1) {
+      this.data.productTopping[positon].quantity = quantity;
+    }
+
     this.setData({
       selectedTopping: topping,
       toppings: this.data.toppings,
-      "product.topping": this.data.toppings[topping.id - 1],
+      "product.topping": this.data.productTopping,
       totalPrice,
     });
   },
@@ -166,7 +189,6 @@ Page({
       totalPrice: product.price,
       productId: id,
       "product.size": this.data.sizes[0],
-      "product.topping": { price: 0, quantity: 0 },
     });
 
     const position = app.cart.orderedProducts.findIndex(
@@ -177,22 +199,12 @@ Page({
       const orderedProduct = app.cart.orderedProducts[position];
       const selectedSize = orderedProduct.size;
       const quantity = orderedProduct.quantity;
-      const selectedTopping = orderedProduct.topping
-        ? orderedProduct.topping
-        : {};
-      this.data.toppings = this.data.toppings.map((item) => {
-        if (selectedTopping.id === item.id) {
-          item = selectedTopping;
-        }
-        return item;
-      });
 
       this.setData({
         product: orderedProduct,
         selectedSize,
-        selectedTopping,
         quantity,
-        toppings: this.data.toppings,
+        toppings: orderedProduct.topping,
       });
     }
 

@@ -40,7 +40,6 @@ App({
       this.cart.orderedProducts[position].quantity = quantity;
     else this.cart.orderedProducts.push({ ...product, quantity });
 
-    console.log(this.cart.orderedProducts);
     this.calculatePrices();
   },
 
@@ -73,8 +72,6 @@ App({
     if (position === -1) {
       this.cart.favoritedProducts.push({ ...product, isLiked: true });
     }
-
-    console.log(this.cart.favoritedProducts);
   },
 
   removeFavoritedProduct(product) {
@@ -90,14 +87,37 @@ App({
   calculatePrices() {
     const { shippingFee, coupon, orderedProducts } = this.cart;
 
-    let price = orderedProducts.reduce((acc, curr) => {
-      return (
-        acc +
-        curr.price * curr.quantity +
-        curr.size.price +
-        curr.topping.price * curr.topping.quantity
+    let toppingPrice;
+
+    const positon = orderedProducts.findIndex(
+      (item) => item["topping"] !== undefined
+    );
+
+    const isUndefined = orderedProducts.includes(undefined);
+
+    if (positon === -1 && !isUndefined) {
+      toppingPrice = orderedProducts.map((item) =>
+        item.topping.map((item) => ({
+          price: item.price,
+          quantity: item.quantity,
+        }))
       );
+      toppingPrice = toppingPrice.map((item) =>
+        item.reduce((acc, curr) => {
+          return acc + curr.price * curr.quantity;
+        }, 0)
+      );
+      toppingPrice = toppingPrice.reduce((acc, curr) => {
+        return acc + curr;
+      }, 0);
+    } else {
+      toppingPrice = 0;
+    }
+
+    let price = orderedProducts.reduce((acc, curr) => {
+      return acc + curr.price * curr.quantity + curr.size.price + toppingPrice;
     }, 0);
+
     const total = price > 0 ? price + shippingFee - coupon.discount : 0;
     this.cart = {
       ...this.cart,
