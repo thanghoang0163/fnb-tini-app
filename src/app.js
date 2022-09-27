@@ -19,6 +19,8 @@ App({
       discount: 0,
       isValid: false,
     },
+    oldSizePrice: 0,
+    productTopping: [],
   },
 
   async loadCart() {
@@ -36,9 +38,11 @@ App({
     const position = this.cart.orderedProducts.findIndex(
       (item) => item.id === product.id
     );
-    if (position !== -1)
-      this.cart.orderedProducts[position].quantity = quantity;
+    if (position !== -1) this.cart.orderedProducts[position] = product;
     else this.cart.orderedProducts.push({ ...product, quantity });
+
+    this.cart.oldSizePrice = product.size.price;
+    this.cart.productTopping = product.topping;
 
     this.calculatePrices();
   },
@@ -56,9 +60,8 @@ App({
     const position = this.cart.orderedProducts.findIndex(
       (item) => item.id === product.id
     );
-    if (position !== -1) {
+    if (position !== -1)
       this.cart.orderedProducts[position].quantity = quantity;
-    }
 
     this.calculatePrices();
   },
@@ -69,9 +72,8 @@ App({
       (item) => item.id === product.id
     );
 
-    if (position === -1) {
+    if (position === -1)
       this.cart.favoritedProducts.push({ ...product, isLiked: true });
-    }
   },
 
   removeFavoritedProduct(product) {
@@ -79,44 +81,34 @@ App({
       (item) => item.id === product.id
     );
 
-    if (position !== -1) {
-      this.cart.favoritedProducts.splice(position, 1);
-    }
+    if (position !== -1) this.cart.favoritedProducts.splice(position, 1);
   },
 
   calculatePrices() {
     const { shippingFee, coupon, orderedProducts } = this.cart;
 
-    let toppingPrice;
+    let toppingPrice = 0;
 
-    const positon = orderedProducts.findIndex(
-      (item) => item["topping"] !== undefined
+    toppingPrice = orderedProducts.map((item) =>
+      item.topping.map((item) => ({
+        price: item.price,
+        quantity: item.quantity,
+      }))
     );
 
-    const isUndefined = orderedProducts.includes(undefined);
+    toppingPrice = toppingPrice.map((item) =>
+      item.reduce((acc, curr) => {
+        return acc + curr.price * curr.quantity;
+      }, 0)
+    );
 
-    if (positon === -1 && !isUndefined) {
-      toppingPrice = orderedProducts.map((item) =>
-        item.topping.map((item) => ({
-          price: item.price,
-          quantity: item.quantity,
-        }))
-      );
-      toppingPrice = toppingPrice.map((item) =>
-        item.reduce((acc, curr) => {
-          return acc + curr.price * curr.quantity;
-        }, 0)
-      );
-      toppingPrice = toppingPrice.reduce((acc, curr) => {
-        return acc + curr;
-      }, 0);
-    } else {
-      toppingPrice = 0;
-    }
+    toppingPrice = toppingPrice.reduce((acc, curr) => {
+      return acc + curr;
+    }, 0);
 
     let price = orderedProducts.reduce((acc, curr) => {
-      return acc + curr.price * curr.quantity + curr.size.price + toppingPrice;
-    }, 0);
+      return acc + curr.price * curr.quantity + curr.size.price;
+    }, toppingPrice);
 
     const total = price > 0 ? price + shippingFee - coupon.discount : 0;
     this.cart = {

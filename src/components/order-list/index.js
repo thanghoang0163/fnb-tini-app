@@ -20,7 +20,13 @@ Component({
     selectedProduct: {},
 
     _onTapProduct(product) {
-      this.props.onTapProduct(product);
+      const { id } = product;
+      navigate({
+        page: "product-detail",
+        params: {
+          id,
+        },
+      });
     },
     _onRemoveProduct() {
       this.props.onRemoveProduct(this.selectedProduct);
@@ -45,7 +51,6 @@ Component({
     },
 
     onClickEditOrder(product) {
-      // my.navigateBack()
       const { id } = product;
       navigate({
         page: "product-detail",

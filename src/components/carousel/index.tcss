@@ -13,3 +13,13 @@
 .carousel-item.medium {
   height: 60vw;
 }
+
+.indicator-number {
+  position: absolute;
+  bottom: 50px;
+  right: 16px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 16px;
+  padding: 6px 12px;
+  color: #fff;
+}

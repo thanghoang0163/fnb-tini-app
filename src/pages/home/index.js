@@ -7,7 +7,6 @@ Page({
   data: {
     isLoading: false,
     isLoadingCarousel: false,
-    isShowSort: false,
     sliders: [],
     products: [],
     newProducts: [],
@@ -37,12 +36,6 @@ Page({
     }));
   },
 
-  onFocus() {
-    this.setData({
-      isShowSort: true,
-    });
-  },
-
   async loadData() {
     this.setData({
       isLoading: true,
@@ -64,13 +57,17 @@ Page({
       const featuredProduct = await productApis
         .getFeaturedProducts(12572)
         .finally(() => this.setData({ isLoading: false }));
-      if (resProduct) {
-        this.setData({
-          products: this.mappingProductsData(resProduct).slice(0, 4),
-          newProducts: this.mappingProductsData(featuredProduct),
-        });
-      }
-    } catch (error) {}
+
+      this.setData({
+        products: this.mappingProductsData(resProduct).slice(0, 4),
+        newProducts: this.mappingProductsData(featuredProduct),
+      });
+    } catch (error) {
+      console.log(error);
+      this.setData({
+        isLoading: false,
+      });
+    }
   },
 
   async onSearch(textSearch) {
@@ -87,13 +84,11 @@ Page({
         order,
         orderby,
         search: textSearch,
-        page: 1,
       });
       this.setData({
         products: {
           ...products,
           data,
-          page: 1,
         },
         isLoading: false,
         textSearch,

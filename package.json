@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "tiki": {
     "appIdentifier": "com.merchantu01",
-    "buildNumber": 5
+    "buildNumber": 6
   },
   "dependencies": {
     "@tiki.vn/mini-html-parser2": "^0.0.4",

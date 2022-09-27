@@ -79,7 +79,7 @@ Page({
   },
 
   // Add Price Size Button
-  _onSelectOptionSize(size) {
+  onSelectOptionSize(size) {
     let totalPrice = this.data.totalPrice;
 
     if (this.data.oldSizePrice !== size.price) {
@@ -143,7 +143,9 @@ Page({
       (item) => item.id === topping.id
     );
 
-    if (positon !== -1) {
+    if (positon === -1) {
+      this.data.productTopping.push(this.data.toppings[topping.id - 1]);
+    } else {
       this.data.productTopping[positon].quantity = quantity;
     }
 
@@ -171,11 +173,62 @@ Page({
 
   // Cart Button
   addToCart() {
+    const isUndefined = typeof this.data.product["topping"] === "undefined";
+
+    if (isUndefined) {
+      this.data.product = {
+        ...this.data.product,
+        topping: [
+          {
+            price: 0,
+            quantity: 0,
+          },
+        ],
+      };
+    }
+
+    const position = this.data.product.topping.findIndex(
+      (item) => item.quantity === 0
+    );
+
+    this.data.product.topping.splice(position, 1);
+
+    this.setData({
+      product: this.data.product,
+    });
+
     app.addProduct(this.data.product, this.data.quantity);
     my.navigateTo({ url: "pages/cart/index" });
   },
 
   addAndGoToCart() {
+    const isUndefined = typeof this.data.product["topping"] === "undefined";
+
+    if (isUndefined) {
+      this.data.product = {
+        ...this.data.product,
+        topping: [
+          {
+            price: 0,
+            quantity: 0,
+          },
+        ],
+      };
+    }
+
+    const position = this.data.productTopping.findIndex(
+      (item) => item.quantity == 0
+    );
+
+    if (position !== -1) {
+      this.data.productTopping.splice(position, 1);
+    }
+
+    this.setData({
+      product: this.data.product,
+      "product.topping": this.data.productTopping,
+    });
+
     app.addProduct(this.data.product, this.data.quantity);
     my.navigateTo({ url: "pages/cart/index" });
   },
@@ -186,7 +239,6 @@ Page({
 
     this.setData({
       product,
-      totalPrice: product.price,
       productId: id,
       "product.size": this.data.sizes[0],
     });
@@ -199,12 +251,28 @@ Page({
       const orderedProduct = app.cart.orderedProducts[position];
       const selectedSize = orderedProduct.size;
       const quantity = orderedProduct.quantity;
+      const toppingProduct = orderedProduct.topping;
+
+      this.data.toppings.map((topping) => {
+        return toppingProduct.map((item) => {
+          if (topping.id === item.id) {
+            return (topping.quantity = item.quantity);
+          }
+        });
+      });
 
       this.setData({
         product: orderedProduct,
         selectedSize,
         quantity,
-        toppings: orderedProduct.topping,
+        toppings: this.data.toppings,
+        totalPrice: app.cart.price,
+        oldSizePrice: app.cart.oldSizePrice,
+        productTopping: app.cart.productTopping,
+      });
+    } else {
+      this.setData({
+        totalPrice: product.price,
       });
     }
 

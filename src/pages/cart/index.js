@@ -17,6 +17,8 @@ Page({
       shippingFee: 0,
       price: 0,
       total: 0,
+      size: {},
+      topping: [],
       coupon: {
         name: "",
         discount: 0,
@@ -52,13 +54,14 @@ Page({
       });
 
       const coupons = await getCouponsAPI();
-      const res = await productApis.getProductsArchives();
+      const res = await productApis
+        .getProductsArchives()
+        .finally(() => this.setData({ isLoading: false }));
 
       this.setData({
         popularProducts: this.mappingProductsData(res).slice(0, 4),
         coupons,
         cart: app.cart,
-        isLoading: false,
       });
     } catch {
       console.error();
@@ -66,10 +69,6 @@ Page({
         isLoading: false,
       });
     }
-  },
-
-  onTapProduct() {
-    my.navigateBack();
   },
 
   onRemoveProduct(product) {
@@ -100,6 +99,89 @@ Page({
   async onSelectCoupon(code) {
     this.hideCouponBottomSheet();
     app.selectCoupon(code);
+  },
+
+  hideModal() {
+    this.setData({
+      modal: {
+        isShow: false,
+      },
+    });
+  },
+
+  makePayment() {
+    this.setData({
+      modal: {
+        key: "payment",
+        isShow: true,
+        headers: ["Thanh toán"],
+        descriptions: ["Bạn muốn thanh toán các sản phẩm này?"],
+        leftButton: "Không",
+        rightButton: "Đồng ý",
+      },
+    });
+  },
+
+  makePaymentFail() {
+    this.setData({
+      modal: {
+        key: "payment_failed",
+        isShow: true,
+        headers: ["Thanh toán không thành công"],
+        descriptions: ["Thanh toán bị từ chối! Vui lòng thử lại"],
+        leftButton: "",
+        rightButton: "OK",
+      },
+    });
+  },
+
+  makePaymentSucess() {
+    app.resetCart();
+    this.setData({
+      modal: {
+        key: "payment_success",
+        isShow: true,
+        headers: ["Thanh toán thành công"],
+        descriptions: [
+          "Vui lòng kiểm tra đơn hàng tại mục 'Quản lí thanh toán'",
+        ],
+        leftButton: "Mua sắm",
+        rightButton: "Kiểm tra",
+      },
+    });
+  },
+
+  onClickModalLeftButton() {
+    switch (this.data.modal.key) {
+      case "payment":
+        this.makePaymentFail();
+        break;
+      case "payment_success":
+        this.hideModal();
+        my.navigateTo({ url: "pages/home/index" });
+        my.showTabBar({
+          animation: true,
+        });
+        break;
+    }
+  },
+
+  onClickModalRightButton() {
+    switch (this.data.modal.key) {
+      case "payment":
+        this.makePaymentSucess();
+        break;
+      case "payment_failed":
+        this.hideModal();
+        break;
+      case "payment_success":
+        this.hideModal();
+        my.navigateTo({ url: "pages/order/index" });
+        my.showTabBar({
+          animation: true,
+        });
+        break;
+    }
   },
 
   async onLoad() {

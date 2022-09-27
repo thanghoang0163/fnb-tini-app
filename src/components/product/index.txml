@@ -6,7 +6,6 @@
     <view class="skeleton skeleton-font-medium skeleton-70-width mb-4x-small" />
     <view class="skeleton skeleton-font-medium skeleton-100-width" />
   </view>
-
   <view tiki:else class="product-content">
     <view class="product_img-container" onTap="_onTapProduct">
       <image src="{{product.feature_image ? product.feature_image : product.images[0].src}}" class="product-img" />

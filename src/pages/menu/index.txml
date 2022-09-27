@@ -23,14 +23,19 @@
       </view>
     </view>
 
-    <view class="horizontal container border-bottom">
-      <text class="text-title">Sản phẩm nổi bật</text>
-      <product-section type="horizontal" isLoading="{{isLoading}}" products="{{featuredProducts}}" />
-    </view>
+    <block tiki:if="{{isInitial}}">
+      <view class="horizontal container border-bottom">
+        <text class="text-title">Sản phẩm nổi bật</text>
+        <product-section type="horizontal" isLoading="{{isLoading}}" products="{{featuredProducts}}" />
+      </view>
 
-    <view class="all-products container">
-      <text class="text-title">Tất cả sản phẩm</text>
-      <product-section type="vertical" isLoading="{{isLoading}}" products="{{products}}" />
-    </view>
+      <view class="all-products container">
+        <text class="text-title">Tất cả sản phẩm</text>
+        <product-section type="vertical" isLoading="{{isLoading}}" products="{{products}}" />
+      </view>
+    </block>
+    <block tiki:else>
+      <product-section type="vertical" isLoading="{{isLoading}}" products="{{featuredProducts}}" />
+    </block>
   </block>
 </view>

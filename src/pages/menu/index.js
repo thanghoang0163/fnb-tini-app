@@ -3,10 +3,17 @@ import { defaultSorts } from "../../utils/constants";
 
 Page({
   data: {
-    featuredProducts: [],
-    products: [],
+    featuredProducts: {
+      data: [],
+      defaultData: [],
+    },
+    products: {
+      data: [],
+      defaultData: [],
+    },
     isLoading: false,
     isShowSort: false,
+    isInitial: true,
     textSearch: "",
     sorts: defaultSorts,
     selectedSort: {
@@ -47,12 +54,24 @@ Page({
     this.setData({
       subCateName: "all",
     });
+    setTimeout(() => {
+      this.setData({
+        isInitial: true,
+      });
+    }, 1000);
   },
 
   onTap(e) {
     this.setData({
       subCateName: e.target.dataset.name,
+      isInitial: false,
+      isLoading: true,
     });
+    setTimeout(() => {
+      this.setData({
+        isLoading: false,
+      });
+    }, 1000);
   },
 
   onFocus() {
@@ -67,7 +86,6 @@ Page({
     });
 
     try {
-      const { products } = this.data;
       const featuredProducts = await productApis
         .getFeaturedProducts(12572)
         .finally(() => this.setData({ isLoading: false }));
@@ -75,14 +93,15 @@ Page({
         .getProductsArchives()
         .finally(() => this.setData({ isLoading: false }));
 
-      if (res) {
-        this.setData({
-          featuredProducts: this.mappingProductsData(featuredProducts),
-          products: this.mappingProductsData(res),
-        });
-      }
+      this.setData({
+        products: this.mappingProductsData(res),
+        featuredProducts: this.mappingProductsData(featuredProducts),
+      });
     } catch (error) {
       console.log(error);
+      this.setData({
+        isLoading: false,
+      });
     }
   },
 
@@ -100,13 +119,11 @@ Page({
         order,
         orderby,
         search: textSearch,
-        page: 1,
       });
       this.setData({
         products: {
           ...products,
           data,
-          page: 1,
         },
         isLoading: false,
         textSearch,
@@ -135,13 +152,11 @@ Page({
       search: textSearch,
       order,
       orderby,
-      page: 1,
     });
     this.setData({
       products: {
         ...products,
         data,
-        page: 1,
       },
       isLoading: false,
       selectedSort,

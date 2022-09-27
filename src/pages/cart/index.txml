@@ -16,8 +16,7 @@
       <section title="Chi tiết đơn hàng">
         <order-list isLoading="{{isLoading}}" products="{{cart.orderedProducts}}" price="{{cart.price}}"
           shippingFee="{{cart.shippingFee}}" total="{{cart.total}}" coupon="{{cart.coupon}}" skeletons="{{2}}"
-          onTapProduct="onTapProduct" onRemoveProduct="onRemoveProduct"
-          onChangeQuantityProduct="onChangeQuantityProduct" />
+          onRemoveProduct="onRemoveProduct" onChangeQuantityProduct="onChangeQuantityProduct" />
       </section>
     </view>
     <view class="cart-footer">
@@ -38,7 +37,7 @@
         </view>
         <icon tiki:else type="arrow_right" color="#808089" />
       </view>
-      <view class="cart_payment">
+      <view class="cart_payment" onTap="makePayment">
         <text>Thanh toán - {{numberFormatter(cart.total, ' đ')}}</text>
       </view>
     </view>

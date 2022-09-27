@@ -2,6 +2,12 @@
   border-radius: 8px;
 }
 
+.product_img-container {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  overflow: hidden;
+}
+
 .product_text-container {
   padding: 0 10px;
 }

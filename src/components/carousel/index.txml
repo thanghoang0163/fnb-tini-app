@@ -10,7 +10,7 @@
     </carousel-item>
   </carousel>
   <view tiki:if="{{list.length > 1}}" class="indicator-number">
-    {{(current+1)}}/{{list.length}}
+    {{(current + 1)}}/{{list.length}}
   </view>
 </template>
 

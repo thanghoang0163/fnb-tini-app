@@ -34,7 +34,7 @@
       <block tiki:for="{{sizes}}" tiki:key="{{item.id}}">
         <select-option className="{{selectedSize.id === item.id ? 'border-active' : 'border-deactive'}}" type="size"
           name="{{item.name}}" price="{{numberFormatter(item.price, ' đ')}}" option="{{item}}" isLoading="{{isLoading}}"
-          onTap="_onSelectOptionSize" />
+          onTap="onSelectOptionSize" />
       </block>
     </view>
 
@@ -50,7 +50,7 @@
       </view>
     </view>
 
-    <view class="product-detail_note container border-bottom">
+    <view class="product-detail_note border-bottom">
       <textarea placeholder="Ghi chú cho quán..."></textarea>
     </view>
 

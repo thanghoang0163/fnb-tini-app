@@ -1,7 +1,7 @@
 .category {
   display: flex;
   overflow-x: auto;
-  margin-top: 5px;
+  margin: 5px 0 10px;
 }
 
 .category::-webkit-scrollbar {
@@ -52,6 +52,7 @@
 .all-products .product-section-vertical {
   display: flex;
   flex-direction: column;
+  margin: 10px;
 }
 
 .all-products .product {
