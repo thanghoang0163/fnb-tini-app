@@ -25,26 +25,26 @@
       {
         "name": "Trang chủ",
         "pagePath": "pages/home/index",
-        "icon": "assets/icons/tab-home.svg",
-        "activeIcon": "assets/icons/tab-home-active.svg"
+        "icon": "assets/icons/tab-home.png",
+        "activeIcon": "assets/icons/tab-home-active.png"
       },
       {
         "name": "Thực đơn",
         "pagePath": "pages/menu/index",
-        "icon": "assets/icons/tab-menu.svg",
-        "activeIcon": "assets/icons/tab-menu-active.svg"
+        "icon": "assets/icons/tab-menu.png",
+        "activeIcon": "assets/icons/tab-menu-active.png"
       },
       {
         "name": "Đơn hàng",
         "pagePath": "pages/order/index",
-        "icon": "assets/icons/tab-order.svg",
-        "activeIcon": "assets/icons/tab-order-active.svg"
+        "icon": "assets/icons/tab-order.png",
+        "activeIcon": "assets/icons/tab-order-active.png"
       },
       {
         "name": "Tài khoản",
         "pagePath": "pages/account/index",
-        "icon": "assets/icons/tab-account.svg",
-        "activeIcon": "assets/icons/tab-account-active.svg"
+        "icon": "assets/icons/tab-account.png",
+        "activeIcon": "assets/icons/tab-account-active.png"
       }
     ]
   }

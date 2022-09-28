@@ -13,6 +13,7 @@ Component({
     onRemoveProduct: () => {},
     onChangeQuantityProduct: () => {},
     onTapProduct: () => {},
+    onTapInfo: () => {},
   },
 
   methods: {
@@ -56,6 +57,17 @@ Component({
         page: "product-detail",
         params: {
           id,
+        },
+      });
+    },
+
+    onTapInfo() {
+      this.setData({
+        modal: {
+          isShow: true,
+          headers: ["Thông tin"],
+          descriptions: ["Đây là phí vận chuyển của bên vận chuyển đưa ra"],
+          rightButton: "Đồng ý",
         },
       });
     },

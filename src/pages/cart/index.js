@@ -10,6 +10,7 @@ Page({
 
   data: {
     isLoading: false,
+    isLoadingEmpty: false,
     cart: {
       buyer: {},
       seller: {},
@@ -73,6 +74,10 @@ Page({
 
   onRemoveProduct(product) {
     app.removeProduct(product);
+    this.setData({
+      isLoadingEmpty: true,
+    });
+    my.hideOverlay({});
   },
 
   onChangeQuantityProduct(product, quantity) {
@@ -99,6 +104,7 @@ Page({
   async onSelectCoupon(code) {
     this.hideCouponBottomSheet();
     app.selectCoupon(code);
+    my.hideOverlay({});
   },
 
   hideModal() {

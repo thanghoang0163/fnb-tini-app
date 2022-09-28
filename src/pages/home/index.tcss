@@ -24,6 +24,7 @@
 
 .carousel_list {
   background-color: #fff;
+  margin-bottom: 10px;
 }
 
 .search_input {

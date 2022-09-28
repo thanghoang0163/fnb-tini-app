@@ -63,6 +63,7 @@ Page({
     const totalPrice = +this.data.product.price * add;
     this.setData({
       quantity: add,
+      "product.quantity": add,
       totalPrice,
     });
   },
@@ -74,6 +75,7 @@ Page({
     const totalPrice = +this.data.product.price * subtract;
     this.setData({
       quantity: subtract,
+      "product.quantity": subtract,
       totalPrice,
     });
   },
@@ -187,14 +189,16 @@ Page({
       };
     }
 
-    const position = this.data.product.topping.findIndex(
-      (item) => item.quantity === 0
+    const position = this.data.productTopping.findIndex(
+      (item) => item.quantity == 0
     );
 
-    this.data.product.topping.splice(position, 1);
+    if (position !== -1) {
+      this.data.productTopping.splice(position, 1);
+    }
 
     this.setData({
-      product: this.data.product,
+      "product.topping": this.data.productTopping,
     });
 
     app.addProduct(this.data.product, this.data.quantity);
@@ -225,7 +229,6 @@ Page({
     }
 
     this.setData({
-      product: this.data.product,
       "product.topping": this.data.productTopping,
     });
 
@@ -235,7 +238,11 @@ Page({
 
   async onLoad(query) {
     const { id } = parseQuery(query);
-    const product = await productApis.getProductDetail(id);
+    const product = await productApis.getProductDetail(id).finally(() =>
+      this.setData({
+        isLoading: false,
+      })
+    );
 
     this.setData({
       product,
@@ -252,6 +259,12 @@ Page({
       const selectedSize = orderedProduct.size;
       const quantity = orderedProduct.quantity;
       const toppingProduct = orderedProduct.topping;
+      const toppingPrice = toppingProduct.reduce(
+        (acc, curr) => acc + curr.price * curr.quantity,
+        0
+      );
+      const totalPrice =
+        +orderedProduct.price + +selectedSize.price + toppingPrice;
 
       this.data.toppings.map((topping) => {
         return toppingProduct.map((item) => {
@@ -265,8 +278,8 @@ Page({
         product: orderedProduct,
         selectedSize,
         quantity,
+        totalPrice,
         toppings: this.data.toppings,
-        totalPrice: app.cart.price,
         oldSizePrice: app.cart.oldSizePrice,
         productTopping: app.cart.productTopping,
       });
@@ -295,6 +308,7 @@ Page({
 
   onReady() {
     this.setData({
+      isLoading: true,
       selectedSize: this.data.sizes[0],
     });
   },

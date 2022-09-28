@@ -8,7 +8,7 @@ Component({
   },
   methods: {
     onTapContinue() {
-      my.navigateTo({ url: "pages/home/index" });
+      my.switchTab({ url: "pages/home/index" });
     },
   },
 });

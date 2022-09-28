@@ -1,4 +1,4 @@
-import { homeApis, productApis } from "../../services/apis";
+import { homeApis, productApis, searchApis } from "../../services/apis";
 import { defaultSorts } from "../../utils/constants";
 
 Page({
@@ -7,6 +7,8 @@ Page({
   data: {
     isLoading: false,
     isLoadingCarousel: false,
+    isInitial: true,
+    skeletons: 4,
     sliders: [],
     products: [],
     newProducts: [],
@@ -70,35 +72,46 @@ Page({
     }
   },
 
+  onInput(textSearch) {
+    const recentSearch = textSearch;
+    this.setData({
+      textSearch: recentSearch,
+      isInitial: false,
+    });
+  },
+
   async onSearch(textSearch) {
-    this.setData({ isLoading: true });
-    const { products, selectedSort } = this.data;
     if (textSearch) {
-      let orderby = selectedSort.value;
-      let order = "desc";
-      if (selectedSort.value.includes("price")) {
-        order = selectedSort.value.split("/")[1];
-        orderby = "price";
-      }
-      const data = await productApis.getProductsArchives({
-        order,
-        orderby,
-        search: textSearch,
-      });
+      this.searchProducts();
+    }
+
+    this.setData({
+      products: this.data.products,
+      isInitital: false,
+    });
+  },
+
+  onConfirm(textSearch) {
+    this.onSearch(textSearch);
+  },
+
+  async searchProducts() {
+    this.setData({
+      isLoading: true,
+    });
+    try {
+      const products = await searchApis
+        .searchProducts({
+          search: this.data.textSearch,
+        })
+        .finally(() => this.setData({ isLoading: false, isInitial: false }));
+
       this.setData({
-        products: {
-          ...products,
-          data,
-        },
+        products,
         isLoading: false,
-        textSearch,
       });
-    } else {
+    } catch (error) {
       this.setData({
-        products: {
-          ...products,
-          data: products.defaultData,
-        },
         isLoading: false,
       });
     }

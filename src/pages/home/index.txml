@@ -1,6 +1,6 @@
 <template name="carousel-loading">
   <carousel class="carousel_list border-bottom" indicator-dots spacing="{{5}}">
-    <slider-item tiki:for="{{2}}" isLoading />
+    <slider-item tiki:for="{{2}}" isLoadingCarousel />
   </carousel>
 </template>
 
@@ -21,24 +21,36 @@
   </view>
 
   <view class="actions">
-    <search-input onDebounce="onSearch" className="search_input" placeholder="Tìm kiếm..." onFocus="onFocus" />
+    <search-bar className="search_input" value="{{textSearch}}" onSearch="onSearch" onInput="onInput"
+      onConfirm="onConfirm" />
   </view>
 
   <template is="carousel-{{isLoadingCarousel ? 'loading' : 'completed'}}" data="{{sliders}}" />
 
-  <block tiki:if="{{products.data.length > 0}}">
-    <product-section type="vertical" isLoading="{{isLoading}}" products="{{products}}" />
-  </block>
 
-  <block tiki:else>
+  <block tiki:if="{{isInitial}}">
     <view class="vertical container border-bottom">
-      <text class="text-title">Sản phẩm nổi bật</text>
-      <product-section type="vertical" isLoading="{{isLoading}}" products="{{products}}" />
+      <block tiki:if="{{isLoading}}">
+        <view class="skeleton skeleton-font-medium skeleton-50-width mr-large mb-medium mt-medium" />
+      </block>
+      <block tiki:else>
+        <text class="text-title">Sản phẩm nổi bật</text>
+      </block>
+      <product-section type="vertical" isLoading="{{isLoading}}" products="{{products}}" skeletons="{{skeletons}}" />
     </view>
 
     <view class="horizontal container">
-      <text class="text-title">Ưu đãi vào món mới</text>
-      <product-section type="horizontal" isLoading="{{isLoading}}" products="{{newProducts}}" />
+      <block tiki:if="{{isLoading}}">
+        <view class="skeleton skeleton-font-medium skeleton-70-width mr-large mb-medium mt-medium" />
+      </block>
+      <block tiki:else>
+        <text class="text-title">Ưu đãi vào món mới</text>
+      </block>
+      <product-section type="horizontal" isLoading="{{isLoading}}" products="{{newProducts}}"
+        skeleton="{{skeletons}}" />
     </view>
+  </block>
+  <block tiki:else>
+    <product-section type="vertical" isLoading="{{isLoading}}" products="{{products}}" skeletons="{{skeletons}}" />
   </block>
 </view>

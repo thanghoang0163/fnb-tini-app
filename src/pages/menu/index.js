@@ -1,19 +1,13 @@
-import { productApis } from "../../services/apis";
+import { productApis, searchApis } from "../../services/apis";
 import { defaultSorts } from "../../utils/constants";
 
 Page({
   data: {
-    featuredProducts: {
-      data: [],
-      defaultData: [],
-    },
-    products: {
-      data: [],
-      defaultData: [],
-    },
+    featuredProducts: [],
+    products: [],
     isLoading: false,
-    isShowSort: false,
     isInitial: true,
+    skeletons: 4,
     textSearch: "",
     sorts: defaultSorts,
     selectedSort: {
@@ -74,12 +68,6 @@ Page({
     }, 1000);
   },
 
-  onFocus() {
-    this.setData({
-      isShowSort: true,
-    });
-  },
-
   async loadData() {
     this.setData({
       isLoading: true,
@@ -105,62 +93,78 @@ Page({
     }
   },
 
-  async onSearch(textSearch) {
-    this.setData({ isLoading: true });
-    const { products, selectedSort } = this.data;
-    if (textSearch) {
-      let orderby = selectedSort.value;
-      let order = "desc";
-      if (selectedSort.value.includes("price")) {
-        order = selectedSort.value.split("/")[1];
-        orderby = "price";
-      }
-      const data = await productApis.getProductsArchives({
-        order,
-        orderby,
-        search: textSearch,
-      });
+  async onSelectSort(selectedSort) {
+    this.setData({
+      isLoading: true,
+    });
+
+    const sortValue = selectedSort.value;
+    let orderby = "";
+    if (sortValue.includes("price")) {
+      orderby = sortValue.split("/")[1];
+    }
+
+    try {
+      const products = await searchApis
+        .searchProducts({
+          sort: orderby,
+        })
+        .finally(() => this.setData({ isLoading: false, isInitial: false }));
+
       this.setData({
-        products: {
-          ...products,
-          data,
-        },
+        products,
         isLoading: false,
-        textSearch,
       });
-    } else {
+    } catch (error) {
       this.setData({
-        products: {
-          ...products,
-          data: products.defaultData,
-        },
         isLoading: false,
       });
     }
   },
 
-  async onSelectSort(selectedSort) {
-    const sortValue = selectedSort.value;
-    let orderby = sortValue;
-    let order = "desc";
-    if (sortValue.includes("price")) {
-      order = sortValue.split("/")[1];
-      orderby = "price";
-    }
-    const { textSearch, products } = this.data;
-    const data = await productApis.getProductsArchives({
-      search: textSearch,
-      order,
-      orderby,
-    });
+  onInput(textSearch) {
+    const recentSearch = textSearch;
     this.setData({
-      products: {
-        ...products,
-        data,
-      },
-      isLoading: false,
-      selectedSort,
+      textSearch: recentSearch,
+      isInitial: false,
     });
+  },
+
+  async onSearch(textSearch) {
+    if (textSearch) {
+      this.searchProducts();
+    }
+
+    this.setData({
+      products: this.data.products,
+      isInitital: false,
+    });
+  },
+
+  onConfirm(textSearch) {
+    this.onSearch(textSearch);
+  },
+
+  async searchProducts() {
+    this.setData({
+      isLoading: true,
+    });
+    try {
+      const products = await searchApis
+        .searchProducts({
+          search: this.data.textSearch,
+        })
+        .finally(() => this.setData({ isLoading: false, isInitial: false }));
+
+      this.setData({
+        products,
+        isLoading: false,
+      });
+    } catch (error) {
+      this.setData({
+        isLoading: false,
+      });
+    }
   },
 
   async onReady() {

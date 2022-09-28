@@ -2,9 +2,10 @@
   <view class="flex justify-between items-center py-2x-small">
     <view class="flex w-full">
       <view class="mr-2x-small">
-        <image class="square-24 skeleton" src="{{avatar}}" />
+        <view class="square-24 skeleton" src="{{avatar}}" />
       </view>
       <view class="w-full">
+        <view class="skeleton skeleton-font-medium skeleton-50-width mr-large mb-medium mt-medium" />
         <view class="skeleton skeleton-font-medium skeleton-70-width mb-4x-small" />
         <view class="skeleton skeleton-font-medium mb-4x-small" />
         <view class="skeleton skeleton-font-regular skeleton-50-width mb-4x-small" />

@@ -1,5 +1,6 @@
 .product {
   border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .product_img-container {
@@ -9,13 +10,11 @@
 }
 
 .product_text-container {
+  height: 80px;
   padding: 0 10px;
-}
-
-.product_text-container > view {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
 }
 
 .product-name text {
@@ -25,4 +24,9 @@
 
 .product-price {
   padding: 10px 0;
+}
+
+.product-image-skeleton {
+  width: 130px;
+  height: 100px;
 }

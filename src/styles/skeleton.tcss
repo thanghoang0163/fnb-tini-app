@@ -136,3 +136,7 @@
 .skeleton-100-width {
   width: 100%;
 }
+
+.skeleton-60-height {
+  height: 60px;
+}

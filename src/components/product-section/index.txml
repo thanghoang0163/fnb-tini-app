@@ -1,11 +1,11 @@
-<view class="product-section">
+<view class="{{className}}">
   <template name="vertical">
     <view class="product-section-vertical">
       <block tiki:if="{{isLoading}}">
         <product isLoading tiki:for="{{skeletons}}" tiki:key="*this" />
       </block>
-      <block tiki:else tiki:for="{{products}}" tiki:key="{{product.id}}">
-        <product product="{{item}}" className="box-shadow" />
+      <block tiki:else tiki:for="{{products}}" tiki:key="id">
+        <product product="{{item}}" onTapProduct="_onTapProduct" />
       </block>
     </view>
   </template>
@@ -15,8 +15,8 @@
       <block tiki:if="{{isLoading}}">
         <product isLoading tiki:for="{{skeletons}}" tiki:key="*this" />
       </block>
-      <block tiki:else tiki:for="{{products}}" tiki:key="{{product.id}}">
-        <product product="{{item}}" className="box-shadow" />
+      <block tiki:else tiki:for="{{products}}" tiki:key="id">
+        <product product="{{item}}" onTapProduct="_onTapProduct" />
       </block>
     </view>
   </template>

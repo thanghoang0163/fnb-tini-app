@@ -1,16 +1,16 @@
 <import-sjs from="../../utils/common.sjs" name="{numberFormatter}"></import-sjs>
 
 <view class="cart page {{cart.orderedProducts.length ? 'cart-footer-padding' : ''}}">
-  <view tiki:if="{{!isLoading && cart.orderedProducts.length === 0}}">
+  <block tiki:if="{{isLoadingEmpty && cart.orderedProducts.length === 0}}">
     <empty class="cart-empty" title="Giỏ hàng trống" description="Khám phá thêm sản phẩm" buttonText="Tiếp tục" />
-    <section fullWidth title="Sản phẩm phổ biến">
+    <section className="container" fullWidth title="Sản phẩm phổ biến">
       <product-section isLoading="{{isLoading}}" type="vertical" skeletons="{{4}}" products="{{popularProducts}}" />
     </section>
-  </view>
+  </block>
 
-  <view tiki:else>
+  <block tiki:else>
     <view class="cart-detail container">
-      <section title=" Địa chỉ giao hàng">
+      <section isLoading="{{isLoading}}" title=" Địa chỉ giao hàng">
         <shipping-details isLoading="{{isLoading}}" buyer="{{cart.buyer}}" seller="{{cart.seller}}" />
       </section>
       <section title="Chi tiết đơn hàng">
@@ -41,7 +41,7 @@
         <text>Thanh toán - {{numberFormatter(cart.total, ' đ')}}</text>
       </view>
     </view>
-  </view>
+  </block>
 </view>
 
 <coupon-selector isShow="{{isShowCouponBottomSheet}}" coupons="{{coupons}}" onSelect="onSelectCoupon"

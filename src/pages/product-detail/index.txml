@@ -4,9 +4,6 @@
   <view class="carousel-product-img">
     <carousel size="large" isLoading="{{isLoading}}" list="{{product.images}}" />
     <view class="icon-container">
-      <!-- <view class="back-btn" catchTap="onTapToGoBack">
-        <image src="/assets/icons/arrow-left.svg" />
-      </view> -->
       <view class="favorite-btn" catchTap="addToFavoriteList">
         <image src="{{isLiked ? '/assets/icons/heart-active-white.svg' : '/assets/icons/heart.svg'}}" />
       </view>
@@ -15,39 +12,64 @@
 
   <view class="product-detail_main-content">
     <view class="product-detail-container container">
-      <text class="product-detail_name">{{product.name}}</text>
-      <view class="product-detail_price">
-        <text class="">{{numberFormatter(product.price, ' đ')}}</text>
-        <view class="product-detail_quantity">
-          <button class="small-btn quantity_icon" catchTap="onTapAddQuantity">
-            <icon type="plus" color="#fff" size="16" />
-          </button>
-          <text>{{quantity < 10 ? '0' + quantity : quantity}}</text>
-              <button class="small-btn quantity_icon" catchTap="onTapSubtractQuantity">
-                <icon type="minus" color="#fff" size="16" />
-              </button>
+      <block tiki:if="{{isLoading}}">
+        <view class="container group-name">
+          <view class="skeleton skeleton-font-medium skeleton-70-width mb-4x-small" />
+          <view class="skeleton skeleton-font-medium skeleton-30-width" />
         </view>
-      </view>
-    </view>
-
-    <view class="product-detail_size border-bottom container">
-      <block tiki:for="{{sizes}}" tiki:key="{{item.id}}">
-        <select-option className="{{selectedSize.id === item.id ? 'border-active' : 'border-deactive'}}" type="size"
-          name="{{item.name}}" price="{{numberFormatter(item.price, ' đ')}}" option="{{item}}" isLoading="{{isLoading}}"
-          onTap="onSelectOptionSize" />
+      </block>
+      <block tiki:else>
+        <text class="product-detail_name">{{product.name}}</text>
+        <view class="product-detail_price">
+          <text class="">{{numberFormatter(product.price, ' đ')}}</text>
+          <view class="product-detail_quantity">
+            <button class="small-btn quantity_icon" catchTap="onTapAddQuantity">
+              <icon type="plus" color="#fff" size="16" />
+            </button>
+            <text>{{quantity < 10 ? '0' + quantity : quantity}}</text>
+                <button class="small-btn quantity_icon" catchTap="onTapSubtractQuantity">
+                  <icon type="minus" color="#fff" size="16" />
+                </button>
+          </view>
+        </view>
       </block>
     </view>
 
-    <view class="product-detail_topping border-bottom container">
-      <text class="text-title">Thêm Topping</text>
-      <view class="product-detail_topping-child">
-        <block tiki:for="{{toppings}}" tiki:key="{{item.id}}">
-          <select-option className="{{selectedTopping.id === item.id ? 'border-active' : 'border-deactive'}}"
-            name="{{item.name}}" price="{{numberFormatter(item.price, ' đ')}}" option="{{item}}" type="topping"
-            quantity="{{item.quantity}}" isLoading="{{isLoading}}" onTapAdd="onTapAddToppingQuantity"
-            onTapSubtract="onTapSubtractToppingQuantity" />
+
+    <block tiki:if="{{isLoading}}">
+      <view class="flex flex-row m-medium">
+        <block tiki:for="{{sizes}}">
+          <view class="skeleton skeleton-font-medium skeleton-35-width skeleton-60-height mr-small" />
         </block>
       </view>
+    </block>
+    <block tiki:else>
+      <view class="product-detail_size border-bottom container">
+        <block tiki:for="{{sizes}}" tiki:key="{{item.id}}">
+          <select-option className="{{selectedSize.id === item.id ? 'border-active' : 'border-deactive'}}" type="size"
+            name="{{item.name}}" price="{{numberFormatter(item.price, ' đ')}}" option="{{item}}"
+            isLoading="{{isLoading}}" onTap="onSelectOptionSize" />
+        </block>
+      </view>
+    </block>
+
+    <view class="product-detail_topping border-bottom container">
+      <block tiki:if="{{isLoading}}">
+        <view class="container group-name">
+          <view class="skeleton skeleton-font-medium skeleton-70-width mb-4x-small" />
+        </view>
+      </block>
+      <block tiki:else>
+        <text class="text-title">Thêm Topping</text>
+        <view class="product-detail_topping-child">
+          <block tiki:for="{{toppings}}" tiki:key="{{item.id}}">
+            <select-option className="{{selectedTopping.id === item.id ? 'border-active' : 'border-deactive'}}"
+              name="{{item.name}}" price="{{numberFormatter(item.price, ' đ')}}" option="{{item}}" type="topping"
+              quantity="{{item.quantity}}" isLoading="{{isLoading}}" onTapAdd="onTapAddToppingQuantity"
+              onTapSubtract="onTapSubtractToppingQuantity" />
+          </block>
+        </view>
+      </block>
     </view>
 
     <view class="product-detail_note border-bottom">
@@ -55,10 +77,10 @@
     </view>
 
     <view class="product-detail_payment container">
-      <view class="cart" onTap="addToCart">
+      <view class="cart" catchTap="addToCart">
         <image src="/assets/icons/cart.svg" />
       </view>
-      <view class="payment" onTap="addAndGoToCart">
+      <view class="payment" catchTap="addAndGoToCart">
         <text>Thanh toán - {{numberFormatter(totalPrice, ' đ')}}</text>
       </view>
     </view>

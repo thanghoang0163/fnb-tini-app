@@ -34,7 +34,9 @@
       <view>
         <view>
           <text>Vận chuyển</text>
-          <image class="order-list-info-icon" src="/assets/icons/info.svg" />
+          <view class="order-list-info-img" onTap="onTapInfo">
+            <image class="order-list-info-icon" src="/assets/icons/info.svg" />
+          </view>
         </view>
         <text>
           {{price > 0 ? numberFormatter(shippingFee, ' đ') : numberFormatter(0)}}

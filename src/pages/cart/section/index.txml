@@ -1,8 +1,11 @@
 <block>
-  <view class="section{{className}}">
-    <view class="section-title text-title">
-      {{title}}
-    </view>
+  <view class="section {{className}}">
+    <block tiki:if="{{isLoading}}">
+      <view class="skeleton skeleton-font-medium skeleton-50-width mr-large mb-medium mt-medium" />
+    </block>
+    <block tiki:else>
+      <view class="section-title text-title">{{title}}</view>
+    </block>
     <view class="section-content">
       <slot />
     </view>

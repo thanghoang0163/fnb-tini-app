@@ -1,22 +1,31 @@
 <import-sjs from="../../utils/common.sjs" name="{numberFormatter}"></import-sjs>
 
-<view class="product {{className}}">
-  <view tiki:if="{{isLoading}}">
-    <view class="skeleton product-image-skeleton radius-8px mb-2x-small" />
-    <view class="skeleton skeleton-font-medium skeleton-70-width mb-4x-small" />
-    <view class="skeleton skeleton-font-medium skeleton-100-width" />
-  </view>
-  <view tiki:else class="product-content">
-    <view class="product_img-container" onTap="_onTapProduct">
-      <image src="{{product.feature_image ? product.feature_image : product.images[0].src}}" class="product-img" />
-    </view>
-    <view class="product_text-container">
-      <view class="product-name" onTap="_onTapProduct">
-        <text number-of-lines="{{2}}">{{product.name}}</text>
-      </view>
-      <view>
-        <view class="product-price" onTap="_onTapProduct">{{numberFormatter(product.price, ' đ')}}</view>
-      </view>
+<template name="product-loading">
+  <view class="card {{className}}">
+    <view class="skeleton card-image" />
+    <view class="card-body mr-5x-small mb-medium">
+      <view class="skeleton product-image-skeleton radius-8px mb-2x-small" />
+      <view class="skeleton skeleton-font-medium skeleton-70-width  mb-4x-small" />
+      <view class="skeleton skeleton-font-medium skeleton-50-width" />
     </view>
   </view>
-</view>
+</template>
+<template name="product-completed">
+  <view class="product {{className}}">
+    <view class="product-content">
+      <view class="product_img-container" onTap="_onTapProduct">
+        <image src="{{product.feature_image ? product.feature_image : product.images[0].src}}" class="product-img" />
+      </view>
+      <view class="product_text-container">
+        <view class="product-name" onTap="_onTapProduct">
+          <text number-of-lines="{{2}}">{{product.name}}</text>
+        </view>
+        <view>
+          <view class="product-price" onTap="_onTapProduct">{{numberFormatter(product.price, ' đ')}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<template is="product-{{isLoading ? 'loading' : 'completed'}}" data="{{product, className}}" />

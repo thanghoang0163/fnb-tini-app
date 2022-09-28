@@ -1,41 +1,47 @@
 <view class="page">
   <view class="actions">
-    <search-input onDebounce="onSearch" className="search_input" placeholder="Tìm kiếm..." onFocus="onFocus" />
+    <search-bar className="search_input" value="{{textSearch}}" onSearch="onSearch" onInput="onInput"
+      onConfirm="onConfirm" />
     <sort sorts="{{sorts}}" selectedSort="{{selectedSort}}" onSelect="onSelectSort" />
   </view>
 
-  <block tiki:if="{{products.data.length > 0}}">
-    <product-section type="vertical" isLoading="{{isLoading}}" products="{{products}}" />
-  </block>
 
-  <block tiki:else>
-    <view class="category container border-bottom">
-      <view class="category-all {{subCateName === 'all' ? 'category-active' : 'category-deactive'}}" data-name="all"
-        style="{{subCateName === 'all' ? 'color: #fff' : 'color: rgba(50, 50, 50, 0.8)'}}" onTap="onSetAllCate">
-        All
-      </view>
-      <view tiki:for="{{categories}}"
-        class="category-{{item.name}} {{subCateName === item.name ? 'category-active' : 'category-deactive'}}"
-        data-name="{{item.name}}" onTap="onTap">
-        <image src="{{item.image}}" />
-        <text
-          style="{{subCateName === item.name ? 'color: #fff' : 'color: rgba(50, 50, 50, 0.8)'}}">{{item.text}}</text>
-      </view>
+  <view class="category container border-bottom">
+    <view class="category-all {{subCateName === 'all' ? 'category-active' : 'category-deactive'}}" data-name="all"
+      style="{{subCateName === 'all' ? 'color: #fff' : 'color: rgba(50, 50, 50, 0.8)'}}" onTap="onSetAllCate">
+      All
+    </view>
+    <view tiki:for="{{categories}}"
+      class="category-{{item.name}} {{subCateName === item.name ? 'category-active' : 'category-deactive'}}"
+      data-name="{{item.name}}" onTap="onTap">
+      <image src="{{item.image}}" />
+      <text style="{{subCateName === item.name ? 'color: #fff' : 'color: rgba(50, 50, 50, 0.8)'}}">{{item.text}}</text>
+    </view>
+  </view>
+
+  <block tiki:if="{{isInitial}}">
+    <view class="horizontal container border-bottom">
+      <block tiki:if="{{isLoading}}">
+        <view class="skeleton skeleton-font-medium skeleton-50-width mr-large mb-medium mt-medium" />
+      </block>
+      <block tiki:else>
+        <text class="text-title">Sản phẩm nổi bật</text>
+      </block>
+      <product-section type="horizontal" isLoading="{{isLoading}}" products="{{featuredProducts}}"
+        skeletons="{{skeletons}}" />
     </view>
 
-    <block tiki:if="{{isInitial}}">
-      <view class="horizontal container border-bottom">
-        <text class="text-title">Sản phẩm nổi bật</text>
-        <product-section type="horizontal" isLoading="{{isLoading}}" products="{{featuredProducts}}" />
-      </view>
-
-      <view class="all-products container">
+    <view class="all-products container">
+      <block tiki:if="{{isLoading}}">
+        <view class="skeleton skeleton-font-medium skeleton-50-width mr-large mb-medium mt-medium" />
+      </block>
+      <block tiki:else>
         <text class="text-title">Tất cả sản phẩm</text>
-        <product-section type="vertical" isLoading="{{isLoading}}" products="{{products}}" />
-      </view>
-    </block>
-    <block tiki:else>
-      <product-section type="vertical" isLoading="{{isLoading}}" products="{{featuredProducts}}" />
-    </block>
+      </block>
+      <product-section type="vertical" isLoading="{{isLoading}}" products="{{products}}" skeletons="{{skeletons}}" />
+    </view>
+  </block>
+  <block tiki:else>
+    <product-section type="vertical" isLoading="{{isLoading}}" products="{{products}}" skeletons="{{skeletons}}" />
   </block>
 </view>
