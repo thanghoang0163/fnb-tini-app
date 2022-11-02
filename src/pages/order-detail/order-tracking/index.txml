@@ -1,0 +1,40 @@
+<import-sjs from="../../../utils/common.sjs" name="{statusFormatter}"></import-sjs>
+
+<view class="order-tracking container">
+  <view class="order-tracking-title">
+    <view class="text-title">Theo dõi đơn hàng</view>
+    <view onTap="onMoveTrackingDetail" class="order-tracking-navigate">
+      <view class="order-tracking-navigate-title">Chi tiết</view>
+      <icon type="arrow_right" color="#0E8253" />
+    </view>
+  </view>
+
+  <view tiki:if="{{isLoading}}" class="bg-white mt-2x-small py-2x-small radius-8px">
+    <view class="px-medium">
+      <view class="py-2x-small skeleton skeleton-font-regular skeleton-50-width"></view>
+    </view>
+    <view class="px-medium py-2x-small">
+      <view class="skeleton w-full skeleton-button-large"></view>
+    </view>
+  </view>
+
+  <view tiki:else class="order-tracking-detail container">
+    <view>
+      <view class="order-tracking-detail-delivery">{{order.tracking.delivery}}</view>
+      <view class="divider" />
+    </view>
+
+    <view class="order-tracking-steps">
+      <steps activeIndex="{{activeIndex}}" direction="vertical" items="{{items}}" activeColor="#0E8253">
+        <!-- <view slot="label_0">
+          {{statusFormatter(item.status)}}
+        </view slot="sub_0">
+        <view>{{item.date}}</view> -->
+      </steps>
+    </view>
+  </view>
+
+  <view class="order-tracking-shipping-detail">
+    <shipping-details isLoading="{{isLoading}}" buyer="{{order.buyer}}" seller="{{order.seller}}" />
+  </view>
+</view>

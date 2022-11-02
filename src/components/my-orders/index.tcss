@@ -1,0 +1,28 @@
+.my-orders {
+  background-color: #fff;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.my-orders-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+
+.my-orders-navigate {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.my-order-navigate-title {
+  color: #0e8253;
+}
+
+.my-orders-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

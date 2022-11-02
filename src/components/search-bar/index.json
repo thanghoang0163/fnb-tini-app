@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "componentLifeCycleV2": "YES",
+  "usingComponents": {
+    "textfield": "@tiki.vn/tini-ui/es/textfield/index",
+    "search-bar": "@tiki.vn/tini-ui/es/search-bar/index"
+  }
+}

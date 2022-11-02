@@ -28,4 +28,4 @@
   </view>
 </template>
 
-<template is="product-{{isLoading ? 'loading' : 'completed'}}" data="{{product, className}}" />
+<template is="product-{{false ? 'loading' : 'completed'}}" data="{{product, className}}" />

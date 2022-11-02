@@ -1,0 +1,79 @@
+.demo {
+  position: relative;
+  width: 100vw;
+  height: 200px;
+  background: rgb(114, 9, 183);
+  background: linear-gradient(
+    to bottom,
+    rgba(114, 9, 183, 1) 46%,
+    rgba(255, 255, 255, 1) 53%
+  );
+}
+
+.demo image {
+  width: 100vw;
+}
+
+.tu-textfield-input {
+  border-radius: 10px;
+  height: 25px;
+}
+
+.demo view:first-of-type .tu-label .tu-label-inline view {
+  position: relative;
+}
+
+.demo view:first-of-type .tu-label .tu-label-inline view::after {
+  content: "1";
+  color: red;
+  position: absolute;
+  top: 0;
+  left: 130px;
+}
+
+.demo view:nth-of-type(2) .tu-label .tu-label-inline view {
+  position: relative;
+}
+
+.demo view:nth-of-type(2) .tu-label .tu-label-inline view::after {
+  content: "1";
+  color: red;
+  position: absolute;
+  top: 0;
+  left: 110px;
+}
+
+.tu-icon.tu-textfield-icon.left,
+.tu-icon.tu-textfield-icon.right {
+  transform: translateY(-6px);
+}
+
+.tu-label-inline {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.tu-textfield-placeholder {
+  color: #ccc;
+}
+
+.tu-c-head-days .tu-c-head-day {
+  color: #ccc;
+  width: 12.7vw;
+}
+
+.tu-c-head-text {
+  font-weight: 600;
+}
+
+.tu-c-date-wrapper .tu-c-date-container {
+  padding: 10px 0;
+}
+
+.tu-c-date-wrapper {
+  background-color: transparent;
+}
+
+.c-date {
+  font-weight: 600;
+}

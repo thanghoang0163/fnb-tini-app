@@ -1,0 +1,8 @@
+{
+  "defaultTitle": "Demo",
+  "usingComponents": {
+    "button": "@tiki.vn/tini-ui/es/tu-button/index",
+    "address": "@tiki.vn/tini-ui/es/address/index",
+    "calendar": "@tiki.vn/tini-ui/es/calendar/index"
+  }
+}

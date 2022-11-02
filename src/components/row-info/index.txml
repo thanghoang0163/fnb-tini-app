@@ -1,0 +1,12 @@
+<view tiki:if="{{isLoading}}">
+  <view class="skeleton skeleton-font-regular w-full"></view>
+  <view class="{{isBorder ? 'divider' : ''}}"></view>
+</view>
+
+<view tiki:else>
+  <view class="row-info">
+    <view class="row-info-title">{{title}}</view>
+    <view class="row-info-desc">{{description}}</view>
+  </view>
+  <view class="{{isBorder ? 'divider' : ''}}"></view>
+</view>

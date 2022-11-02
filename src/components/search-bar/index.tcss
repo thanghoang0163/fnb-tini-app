@@ -1,0 +1,9 @@
+.search_input {
+  background-color: #f6f8f7;
+  border-radius: 8px;
+}
+
+.search_input input {
+  outline: none;
+  border: none;
+}

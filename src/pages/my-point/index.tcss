@@ -1,0 +1,53 @@
+.my-point {
+  padding: 10px;
+}
+
+.my-point-card {
+}
+
+.my-point-card-img {
+  position: relative;
+  border-radius: 8px;
+}
+
+.user-info {
+  width: 100%;
+  position: absolute;
+  top: 24px;
+  left: 24px;
+}
+
+.user-info-avatar {
+  position: absolute;
+  top: 5%;
+  right: 10%;
+  width: 60px;
+  height: 60px;
+}
+
+.my-point-text {
+  color: #fff;
+}
+
+.my-point_point {
+  font-weight: 600;
+  font-size: 20px;
+}
+
+.join-date {
+  position: absolute;
+  left: 0;
+  bottom: -100%;
+}
+
+.barcode {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.barcode-text {
+  margin-top: 10px;
+}

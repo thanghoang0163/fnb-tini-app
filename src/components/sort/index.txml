@@ -1,0 +1,19 @@
+<view class="sort {{className}}">
+  <chip active content="{{selected.label ? selected.label : 'Bộ lọc'}}" prefixImage="/assets/icons/sort-active.svg"
+    onClick="showBottomSheet" onLeftClick="showBottomSheet" />
+  <bottom-sheet title="Bộ lọc" onClose="hideBottomSheet" disableScroll distanceFromTop="{{100}}" show="{{isShow}}">
+    <template is="sort-content" data="{{sorts, selected}}" />
+    <view slot="footer" />
+  </bottom-sheet>
+</view>
+
+<template name="sort-content">
+  <view class="sort-items px-medium">
+    <view tiki:for="{{sorts}}" tiki:key="value"
+      class="sort-item flex justify-between items-center {{item.value === selected.value ? 'sort-item-active' : ''}}"
+      data-item="{{item}}" onTap="_onSelect">
+      <text>{{item.label}}</text>
+      <icon tiki:if="{{item.value === selected.value}}" type="success_glyph" color="#00AB56" />
+    </view>
+  </view>
+</template>

@@ -1,0 +1,4 @@
+<view class="favorite-product" tiki:for="{{products}}" tiki:key="{{product.id}}">
+  <product product="{{item}}" className="box-shadow" isLoading="{{isLoading}}" />
+  <image class="favorite-product-img" src="/assets/icons/heart-active-red.svg" />
+</view>

@@ -1,0 +1,35 @@
+.order-tracking-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-tracking-detail {
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.order-tracking-detail-delivery {
+  padding-top: 10px;
+}
+
+.order-tracking-shipping-detail {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.order-tracking-navigate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.order-tracking-navigate-title {
+  color: #0e8253;
+}
+
+.order-tracking-steps {
+  padding-bottom: 10px;
+}

@@ -1,0 +1,13 @@
+.order-detail {
+  background-color: #f6f8f7;
+}
+
+.order-detail .section {
+  margin-bottom: 20px;
+}
+
+.order-detail .section .section-content {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 10px;
+}

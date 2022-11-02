@@ -1,0 +1,33 @@
+<view class="demo">
+  <!-- <button onTap="onChooseImage">Chọn ảnh</button>
+  <block tiki:for="{{imgs}}">
+    <image src="{{item}}" />
+  </block>
+
+  <view>Kích thước trước resize</view>
+  <block tiki:if="{{initWidth && initHeight}}">
+    <view>{{initWidth}}</view>
+    <view>{{initHeight}}</view>
+  </block>
+
+  <view>Kích thước sau resize</view>
+  <block tiki:if="{{newWidth && newHeight}}">
+    <view>{{newWidth}}</view>
+    <view>{{newHeight}}</view>
+  </block> -->
+
+  <!-- <view class="canvas-view">
+    <canvas id="canvas" width="300" height="300" class="canvas" type="2d" />
+  </view> -->
+
+  <!-- <address streetErrorMsg="{{streetErrorMsg}}" cityErrorMsg="{{cityErrorMsg}}" districtErrorMsg="{{districtErrorMsg}}"
+    wardErrorMsg="{{wardErrorMsg}}" streetLabel="Địa chỉ nhận hàng:" streetPlaceholder="Nhập số nhà, tên đường..."
+    street="{{street}}" city="{{city}}" district="{{district}}" ward="{{ward}}" full_name="{{full_name}}"
+    phone_number="{{phone_number}}" onChangeAddress="onChangeAddress" onFullAddress="onFullAddress" /> -->
+
+  <!-- <button onTap="onSaveImage">Lưu ảnh về máy</button> -->
+
+  <!-- <calendar mode="single" header="year" locale="vi" onSelect="onSelect" onChange="onChange"
+    selectedDate={{selectedDate}} tagData={{tagData}} /> -->
+  <image src='/assets/images/banner_text 1.png' />
+</view>

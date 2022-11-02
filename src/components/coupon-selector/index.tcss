@@ -24,9 +24,13 @@
   height: calc(100% - 16px);
 }
 
+.coupon-img-container {
+  height: 100vh;
+}
+
 .coupon-img-container > view {
   width: 90vw;
-  height: 18vh;
+  height: 10vh;
   margin: 10px 0;
 }
 

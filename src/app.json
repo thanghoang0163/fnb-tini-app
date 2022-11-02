@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/demo/index",
     "pages/home/index",
     "pages/menu/index",
     "pages/order/index",

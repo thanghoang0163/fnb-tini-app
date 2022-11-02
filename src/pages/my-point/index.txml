@@ -1,0 +1,18 @@
+<view class="my-point container">
+  <view class="my-point-card">
+    <image class="my-point-card-img" src="/assets/images/my-point.png" mode="widthFix" />
+    <view class="user-info">
+      <view>
+        <view class="my-point-text">{{myPoint.user.name}}</view>
+        <view class="my-point-text my-point_point">{{myPoint.point}} điểm</view>
+      </view>
+      <view class="join-date my-point-text">Ngày tham gia: {{` ${myPoint.user.joinDate}`}}</view>
+    </view>
+    <image class="user-info-avatar" src="{{myPoint.user.avt}}" />
+  </view>
+
+  <view class="barcode">
+    <image class="barcode-img" mode="widthFix" src="/assets/images/barcode.png" />
+    <view class="barcode-text">{{myPoint.barcode}}</view>
+  </view>
+</view>

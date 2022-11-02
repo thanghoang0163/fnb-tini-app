@@ -1,0 +1,14 @@
+<view class="my-orders">
+  <view class="my-orders-title">
+    <view class="text-title">Đơn hàng của tôi</view>
+    <view class="my-orders-navigate">
+      <view class="my-order-navigate-title" onTap="onMoveOrderManagement">Chi tiết</view>
+      <icon type="arrow_right" color="#0E8253" />
+    </view>
+  </view>
+
+  <view class="my-orders-detail">
+    <order-icon tiki:for="{{orderIcons}}" isLoading="{{isLoading}}" tab="{{index}}" onTap="onMoveOrderManagement"
+      value="{{numOrders[item.key]}}" src="{{item.src}}" text="{{item.value}}" />
+  </view>
+</view>

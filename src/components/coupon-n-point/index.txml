@@ -1,0 +1,41 @@
+<template name="loading">
+  <view class="flex">
+    <view class="flex w-50 py-2x-small border-right-gray">
+      <view class="skeleton size-40 skeleton-button-shape-circle" />
+      <view class="ml-2x-small skeleton-75-width">
+        <view class="mb-4x-small skeleton skeleton-50-width skeleton-font-regular"></view>
+        <view class="skeleton skeleton-25-width skeleton-font-regular"></view>
+      </view>
+    </view>
+    <view class="flex w-50 py-2x-small pl-medium">
+      <view class="skeleton size-40 skeleton-button-shape-circle" />
+      <view class="ml-2x-small skeleton-75-width">
+        <view class="mb-4x-small skeleton skeleton-50-width skeleton-font-regular"></view>
+        <view class="skeleton skeleton-25-width skeleton-font-regular"></view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<template name="completed">
+  <view class="coupon-n-point-container">
+    <view onTap="onMoveMyCoupon" class="coupon-n-point-child">
+      <image class="coupon-n-point-img" src="/assets/icons/ic-coupon.svg" />
+      <view>
+        <view class="coupon-n-point-title">Voucher</view>
+        <view class="coupon-n-point-number">{{user.coupons}}</view>
+      </view>
+    </view>
+    <view onTap="onMoveMyPoint" class="coupon-n-point-child">
+      <image class="coupon-n-point-img" src="/assets/icons/ic-point.svg" />
+      <view>
+        <view class="coupon-n-point-title">Điểm</view>
+        <view class="coupon-n-point-number">{{user.points}}</view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<view class="coupon-n-point">
+  <template is="{{isLoading ? 'loading' : 'completed'}}" data="{{user}}" />
+</view>

@@ -44,8 +44,7 @@
   </block>
 </view>
 
-<coupon-selector isShow="{{isShowCouponBottomSheet}}" coupons="{{coupons}}" onSelect="onSelectCoupon"
-  onClose="hideCouponBottomSheet" />
+<coupon-selector isShow="{{isShowCouponBottomSheet}}" onSelect="onSelectCoupon" onClose="hideCouponBottomSheet" />
 
 <modal isShow="{{modal.isShow}}" headers="{{modal.headers}}" descriptions="{{modal.descriptions}}"
   leftButton="{{modal.leftButton}}" rightButton="{{modal.rightButton}}" onClickLeftButton="onClickModalLeftButton"

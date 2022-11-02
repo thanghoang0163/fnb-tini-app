@@ -1,0 +1,44 @@
+.payment-info {
+  display: flex;
+}
+
+.payment-info-img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.payment-method {
+  font-weight: 600;
+}
+
+.payment-detail {
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.payment-detail-child {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 10px 0;
+}
+
+.payment-detail-sub-text {
+  font-size: 12px;
+  color: #808089;
+}
+
+.payment-detail-price {
+  font-weight: 600;
+}
+
+.payment-detail-img {
+  width: 15px;
+  height: 15px;
+  margin-left: 5px;
+}
+
+.payment-detail-price-promotion {
+  color: #00ab56;
+  font-weight: 600;
+}

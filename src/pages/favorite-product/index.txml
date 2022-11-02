@@ -1,0 +1,23 @@
+<view class="favorite-product container">
+  <view class="most-order">
+    <view class="most-order-title">
+      <view class="text-title">Đặt nhiều nhất</view>
+      <view class="most-order-navigate">
+        <view class="most-order-navigate-title" onTap="onMoveOrderManagement">Chi tiết</view>
+        <icon type="arrow_right" color="#0E8253" />
+      </view>
+    </view>
+    <product-section type="horizontal" isLoading="{{isLoading}}" products="{{products}}" />
+  </view>
+  <view class="divider" />
+  <view class="favorited-product">
+    <view class="text-title">Đã thích</view>
+    <block tiki:if="{{favoritedProducts.length == 0}}">
+      <empty class="cart-empty" title="Không có sản phẩm" description="Thêm sản phẩm vào danh sách nào!"
+        buttonText="Tiếp tục" />
+    </block>
+    <block tiki:else>
+      <favorite-product isLoading="{{isLoading}}" products="{{favoritedProducts}}" />
+    </block>
+  </view>
+</view>

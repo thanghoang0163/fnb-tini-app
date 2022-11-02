@@ -1,0 +1,9 @@
+<view class="location">
+  <view class="circle-background" />
+  <view class="background-location">
+    <text number-of-lines="{{1}}" class="location-text location-finding-text">Đang tìm vị trí của bạn...</text
+      number-of-lines="{{1}}">
+    <image class="location-img" src="/assets/images/map.png" />
+    <text class="address" number-of-lines="{{2}}">{{address}}</text>
+  </view>
+</view>

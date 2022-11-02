@@ -1,0 +1,15 @@
+<view class="order-detail">
+  <general-info order="{{order}}" isLoading="{{isLoading}}" />
+
+  <view>
+    <order-tracking order="{{order}}" isLoading="{{isLoading}}" />
+  </view>
+
+  <view>
+    <product-info products="{{order.products}}" isLoading="{{isLoading}}" />
+  </view>
+
+  <view>
+    <payment-info payment="{{order.payment}}" isLoading="{{isLoading}}" />
+  </view>
+</view>

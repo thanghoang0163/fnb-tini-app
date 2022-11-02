@@ -1,6 +1,6 @@
 <view>
   <block tiki:if="{{isShow}}">
-    <bottom-sheet title="Chọn voucher" onClose="_onClose">
+    <bottom-sheet title="Chọn ngân hàng" onClose="_onClose">
       <template is="coupon-selector-content" data="{{coupons}}" />
       <view slot="footer" class="padding-inset-bottom" />
     </bottom-sheet>
@@ -10,17 +10,19 @@
 <template name="coupon-selector-content">
   <view class="container coupon-selector">
     <view class="coupon-input">
-      <textfield value="{{value}}" className="coupon-selector-input" placeholder="Nhập mã voucher" onInput="onInput" />
+      <textfield value="{{value}}" className="coupon-selector-input" placeholder="Nhập ngân hàng" onInput="onInput" />
       <view class="coupon-selector-input-action" onTap="_onSelect">
         <view class="vertical-divider" />
-        <text class="text-brand">
+        <!-- <text class="text-brand">
           Chọn
-        </text>
+        </text> -->
       </view>
     </view>
     <view tiki:if="{{coupons.length}}" class="coupon-img-container">
-      <view tiki:for="{{coupons}}" tiki:key="id" onTap="_onSelect" data-item="{{item}}">
-        <image class="coupon-img" src="/assets/images/coupon.png" mode="widthFix" />
+      <view tiki:for="{{coupons}}" tiki:key="id" onTap="_onSelect" data-item="{{item}}"
+        style="display: flex; justify-content: space-between; align-items: center;">
+        <text>{{item.name}}</text>
+        <image class="coupon-img" src="{{item.image}}" mode="widthFix" style="width:40px; height:40px" />
       </view>
     </view>
   </view>

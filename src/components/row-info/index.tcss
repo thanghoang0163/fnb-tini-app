@@ -1,0 +1,8 @@
+.row-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.row-info-desc {
+  font-weight: 600;
+}

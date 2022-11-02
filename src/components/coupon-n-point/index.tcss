@@ -1,0 +1,34 @@
+.coupon-n-point {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 16px 10px;
+}
+
+.coupon-n-point-container {
+  display: flex;
+}
+
+.coupon-n-point-child {
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-self: center;
+}
+
+.coupon-n-point-child:first-child {
+  border-right: solid 1px #ebebf0;
+}
+
+.coupon-n-point-child:last-child {
+  transform: translateX(10%);
+}
+
+.coupon-n-point-img {
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+}
+
+.coupon-n-point-number {
+  font-weight: 600;
+}

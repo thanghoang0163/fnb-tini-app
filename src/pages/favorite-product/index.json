@@ -1,0 +1,8 @@
+{
+  "defaultTitle": "Yêu thích",
+  "usingComponents": {
+    "favorite-product": "components/favorite-product/index",
+    "product-section": "components/product-section/index",
+    "empty": "components/empty/index"
+  }
+}

@@ -1,0 +1,19 @@
+.product-info {
+  display: flex;
+  align-items: center;
+}
+
+.product-info-img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.product-info-name {
+  font-weight: 600;
+}
+
+.product-info-price {
+  color: #808089;
+  font-size: 12px;
+}

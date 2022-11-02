@@ -1,0 +1,66 @@
+<import-sjs from="../../../utils/common.sjs" name="{numberFormatter}"></import-sjs>
+
+<template name="loading">
+  <section title="Payment info">
+    <view class="flex items-center">
+      <view class="skeleton size-40" />
+      <view class="ml-2x-small skeleton-75-width">
+        <view class="mb-4x-small skeleton skeleton-50-width skeleton-font-regular" />
+        <view class="skeleton skeleton-50-width skeleton-font-regular" />
+      </view>
+    </view>
+  </section>
+
+  <view class="bg-white mt-medium p-medium radius-8px">
+    <view class="my-2x-small skeleton skeleton-font-regular w-full" />
+    <view class="my-2x-small skeleton skeleton-font-regular w-full" />
+    <view class="my-2x-small skeleton skeleton-font-regular w-full" />
+    <view class="my-2x-small skeleton skeleton-font-regular w-full" />
+  </view>
+</template>
+
+<template name="completed">
+  <section title="Thông tin thanh toán">
+    <view class="payment-info">
+      <image class="payment-info-img" src="{{payment.thumbnail}}" />
+      <view>
+        <view>Phương thức thanh toán</view>
+        <view class="payment-method">
+          {{payment.method}}
+        </view>
+      </view>
+    </view>
+  </section>
+
+  <view class="payment-detail">
+    <view class="payment-detail-child">
+      <view class="payment-detail-text">Giá</view>
+      <view class="payment-detail-price">{{numberFormatter(payment.price, ' đ')}}</view>
+    </view>
+
+    <view class="payment-detail-child">
+      <view class="flex items-center">
+        <view class="payment-detail-text">Vận chuyển</view>
+        <image class="payment-detail-img" src="/assets/icons/info.svg" />
+      </view>
+      <view class="payment-detail-price">{{numberFormatter(payment.shippingFee, ' đ')}}</view>
+    </view>
+
+    <view class="payment-detail-child">
+      <view class="payment-detail-text">Khuyến mãi</view>
+      <view class="payment-detail-price-promotion">-{{numberFormatter(payment.promotion, ' đ')}}</view>
+    </view>
+
+    <view class="payment-detail-child">
+      <view>
+        <view class="payment-detail-text">Tổng cộng</view>
+        <view class="payment-detail-sub-text">Bao gồm VAT</view>
+      </view>
+      <view class="payment-detail-price">{{numberFormatter(payment.total, ' đ')}}</view>
+    </view>
+  </view>
+</template>
+
+<view class="container">
+  <template is="{{isLoading ? 'loading' : 'completed'}}" data="{{payment}}" />
+</view>
